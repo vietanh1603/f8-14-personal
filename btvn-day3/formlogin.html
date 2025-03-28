@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form login</title>
+</head>
+<body>
+<h1>Form login</h1>
+<form action="https://api-gateway.fullstack.edu.vn/action_page.php" method="post">
+    <table>
+        <tr>
+            <td>
+                <label for="use">Usename: </label>
+            </td>
+            <td>
+                <input type="text" id="use" name="use" placeholder="Enter your name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="pass">Password: </label>
+            </td>
+            <td>
+                <input type="password" id="pass" name="pass" placeholder="Enter your password">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="city">City of: </label>
+            </td>
+            <td>
+                <input type="text" id="city" name="city" placeholder="Enter your city">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="sever">Wed sever</label>
+            </td>
+            <td>
+                <select name="sever" id="sever">
+                    <option value="">--Choose a sever</option>
+                    <option value="sever1">Sever 1</option>
+                    <option value="sever2">Sever 2</option>
+                    <option value="sever3">Sever 3</option>
+                    <option value="sever4">Sever4</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4">
+                <label>Please specify your role</label>
+            </td>
+            <td>
+                <input type="radio" name="PleaseSpecifyYourRole" id="admin" value="admin">
+                <label for="admin">Admin</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" name="PleaseSpecifyYourRole" id="engineer" value="engineer">
+                <label for="engineer">Engineer</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" name="PleaseSpecifyYourRole" id="manager" value="manager">
+                <label for="manager">Manager</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" name="PleaseSpecifyYourRole" id="guest" value="guest">
+                <label for="guest">Guest</label>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="3">
+                <label>Please specify your role</label>
+            </td>
+            <td>
+                <input type="checkbox" name="PleaseSpecifyYourRole" id="role" value="Mail">
+                <label for="role">Mail</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="PleaseSpecifyYourRole" id="payroll" value="Payroll">
+                <label for="payroll">Payroll</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox" name="PleaseSpecifyYourRole" id="self" value="SelfService">
+                <label for="self">Self-service</label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <button type="submit">Login</button>
+            </td>
+            <td>
+                <button type="reset">Reser</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
