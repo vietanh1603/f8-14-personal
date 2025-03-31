@@ -1,0 +1,18 @@
+h3 {
+    color:orange ;
+}
+#price {
+    color:red;
+}
+.product-item {
+    color:brown;
+}
+.caption > #price > .real_price del {
+    color:gray;
+}
+.caption > .typesneaker {
+    color:violet;
+}
+.caption > #price3 {
+    color:green;
+}
