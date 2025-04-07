@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 20px;
+    }
+    .header {
+        display: flex;
+    align-items: center;
+        padding: 30px 0;
+        background-color: #ffffff;
+    }
+    .logo {
+        margin-right: 20px;
+    }
+    img {
+        max-width: 100px;
+        height: auto;
+    }
+    .menu {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+    }
+    .category {
+        display: inline-block;
+        padding: 13px 25px 13px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        background: #f5f5f5;
+    }
+    .category::before {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 600;
+        content: "\f84c";
+        padding-right: 5px;
+    }
+.item {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+    .item ul {
+        display: flex;
+        position: relative;
+        left: 140px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .item ul li {
+        position: relative;
+        margin: 0 10px;
+    }
+    .item ul li > a {
+        color: #333;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+    }
+    .item ul li > a::after {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        content: '\f078';
+        font-size: 10px;
+        margin-left: 5px;
+    }
+    .item ul li ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        padding: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-radius: 5px;
+        min-width: 150px;
+    }
+    .item ul li:hover ul {
+        display: block;
+    }
+    .item ul li ul li {
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .item ul li ul li:last-child {
+        border-bottom: none;
+    }
+    .item ul li ul li a {
+        color: #555;
+        font-size: 14px;
+    }
+    .join {
+        position: relative;
+        right: 30px;
+        background: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+</style>
+<body>
+<div class="header">
+   <span class="logo">
+       <a href="?"><img src="https://rainbowit.net/html/histudy/assets/images/logo/logo.png" alt="logo"></a>
+   </span>
+    <div class="menu">
+        <div class="category">Category</div>
+        <div class="item">
+            <ul>
+                <li>
+                    <a href="#" class="home">Home</a>
+                    <ul class="sub-home">
+                        <li>Home 1</li>
+                        <li>Home 2</li>
+                        <li>Home 3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="courses">Courses</a>
+                    <ul class="sub-courses">
+                        <li>Courses 1</li>
+                        <li>Courses 2</li>
+                        <li>Courses 3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="dashboard ">Dashboard </a>
+                    <ul class="sub-dashboard">
+                        <li>Dashboard 1</li>
+                        <li>Dashboard 2</li>
+                        <li>Dashboard 3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="page">Pages</a>
+                    <ul class="sub-pages">
+                        <li>Pages 1</li>
+                        <li>Pages 2</li>
+                        <li>Pages 3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="elements">Elements</a>
+                    <ul class="sub-elements">
+                        <li>Elements 1</li>
+                        <li>Elements 2</li>
+                        <li>Elements 3</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="blog">Blog</a>
+                    <ul class="sub-blog">
+                        <li>Blog 1</li>
+                        <li>Blog 2</li>
+                        <li>Blog 3</li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="join">Join Now</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
