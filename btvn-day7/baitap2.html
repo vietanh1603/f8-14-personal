@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding:20px;
+        line-height: 1.6;
+    }
+    .title1, .title2, .title3 {
+        display: block;
+        padding: 12px 15px 12px 30px;
+        background: #FF6633;
+        color: white;
+        margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+        font-weight: 300;
+    }
+   .title1 span {
+        margin-left: 10px;
+        font-weight: 400;
+    }
+    .title2 span {
+        margin-left: 10px;
+        font-weight: 400;
+    }
+    .title3 span {
+        margin-left: 10px;
+        font-weight: 400;
+    }
+    .title1:before {
+        content: "+";
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        font-weight: 400;
+    }
+    .title2:before {
+        content: "+";
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        font-weight: 400
+    }
+    .title3:before {
+        content: "+";
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        font-weight: 400
+    }
+    .input-title:checked ~ .title1:before {
+    content: "-";
+}
+    .input-title:checked ~ .title2:before {
+        content: "-";
+    }
+    .input-title:checked ~ .title3:before {
+        content: "-";
+    }
+    .product {
+        display: none;
+   }
+   .input-title:checked ~ .product {
+       display: block;
+   }
+    .product {
+        padding: 10px;
+        position: relative;
+        left: 20px;
+    }
+    .product p {
+        margin-bottom: 10px;
+    }
+    .product ol {
+        padding-left: 10px;
+        margin-bottom: 10px;
+    }
+    .product ol li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+        line-height: 1;
+    }
+    .product span {
+        font-weight: 600;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="box1">
+        <div class="item">
+            <input type="checkbox" id="checkbox1" name="checkbox" class="input-title" hidden>
+            <label for="checkbox1" class="title1"><span>How to set random colors</span></label>
+            <div class="product">
+                <p>To set random colors:</p>
+                <ol>
+                    <li>Add <span>jag-fag-random-colors</span> class.</li>
+                    <li>To change color, open theme{num}.css, find "jag-faq-random-colors".</li>
+                    <li>You can change color from here.</li>
+                </ol>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit, voluptas voluptate! Ad adipisci ipsam iure odit? Consequuntur ducimus eaque exercitationem facere facilis nam nesciunt quas quibusdam tenetur velit. Cupiditate delectus, deserunt distinctio eaque eos fugiat molestias necessitatibus non nulla officia omnis quia saepe sit soluta temporibus ullam vel veniam veritatis voluptate voluptatem. Delectus dolorum sint vel! Consectetur magni numquam obcaecati placeat possimus suscipit.</p>
+            </div>
+        </div>
+    </div>
+    <div class="box2">
+        <div class="item">
+            <input type="checkbox" id="checkbox2" name="checkbox" class="input-title" hidden>
+            <label for="checkbox2" class="title2"><span>How to use theme colors and add new theme colors</span></label>
+            <div class="product">
+                <p>To set random colors:</p>
+                <ol>
+                    <li>Add <span>jag-fag-random-colors</span> class.</li>
+                    <li>To change color, open theme{num}.css, find "jag-faq-random-colors".</li>
+                    <li>You can change color from here.</li>
+                </ol>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit, voluptas voluptate! Ad adipisci ipsam iure odit? Consequuntur ducimus eaque exercitationem facere facilis nam nesciunt quas quibusdam tenetur velit. Cupiditate delectus, deserunt distinctio eaque eos fugiat molestias necessitatibus non nulla officia omnis quia saepe sit soluta temporibus ullam vel veniam veritatis voluptate voluptatem. Delectus dolorum sint vel! Consectetur magni numquam obcaecati placeat possimus suscipit.</p>
+            </div>
+        </div>
+    </div>
+    <div class="box3">
+        <div class="item">
+            <input type="checkbox" id="checkbox3" name="checkbox" class="input-title" hidden>
+            <label for="checkbox3" class="title3"><span>How to change icon?</span></label>
+            <div class="product">
+                <p>To set random colors:</p>
+                <ol>
+                    <li>Add <span>jag-fag-random-colors</span> class.</li>
+                    <li>To change color, open theme{num}.css, find "jag-faq-random-colors".</li>
+                    <li>You can change color from here.</li>
+                </ol>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit, voluptas voluptate! Ad adipisci ipsam iure odit? Consequuntur ducimus eaque exercitationem facere facilis nam nesciunt quas quibusdam tenetur velit. Cupiditate delectus, deserunt distinctio eaque eos fugiat molestias necessitatibus non nulla officia omnis quia saepe sit soluta temporibus ullam vel veniam veritatis voluptate voluptatem. Delectus dolorum sint vel! Consectetur magni numquam obcaecati placeat possimus suscipit.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
