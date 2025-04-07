@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Accordion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+        .accordion-title {
+            display: block;
+            padding: 12px 15px 12px 30px;
+            background: #FF6633;
+            color: white;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .accordion-title:hover {
+            background: #e55c2b;
+        }
+        .accordion-title::before {
+            content: "+";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+        }
+        .accordion-input:checked ~ .accordion-title::before {
+            content: "-";
+        }
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .accordion-input:checked ~ .accordion-content {
+            display: block;
+        }
+        .accordion-content p {
+            margin-bottom: 10px;
+        }
+        .accordion-content ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        .accordion-content span {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="accordion-item">
+        <input type="checkbox" id="checkbox1" class="accordion-input" hidden>
+        <label for="checkbox1" class="accordion-title">How to set random colors</label>
+        <div class="accordion-content">
+            <p>To set random colors:</p>
+            <ol>
+                <li>Add <span>jag-faq-random-colors</span> class.</li>
+                <li>To change color, open theme{num}.css, find "jag-faq-random-colors".</li>
+                <li>You can change color from here.</li>
+            </ol>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit, voluptas voluptate!</p>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <input type="checkbox" id="checkbox2" class="accordion-input" hidden>
+        <label for="checkbox2" class="accordion-title">How to use theme colors and add new theme colors</label>
+        <div class="accordion-content">
+            <p>To use theme colors:</p>
+            <ol>
+                <li>Open the theme configuration file.</li>
+                <li>Locate the color palette section.</li>
+                <li>Add your new color codes in HEX format.</li>
+            </ol>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit.</p>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <input type="checkbox" id="checkbox3" class="accordion-input" hidden>
+        <label for="checkbox3" class="accordion-title">How to change icon?</label>
+        <div class="accordion-content">
+            <p>To change icons:</p>
+            <ol>
+                <li>Locate the icon folder in your project.</li>
+                <li>Replace the existing icon files with your new ones.</li>
+                <li>Make sure the file names remain the same.</li>
+            </ol>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda corporis doloremque eius eligendi esse fugiat incidunt laboriosam laudantium minus natus nemo nobis recusandae ullam unde velit.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
