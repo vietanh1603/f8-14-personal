@@ -35,6 +35,9 @@
         max-width: 100px;
         height: auto;
     }
+    .logo:hover img {
+        transform: scale(1.05);
+    }
     .menu {
         display: flex;
         align-items: center;
@@ -47,6 +50,12 @@
         font-weight: 600;
         border: none;
         background: #f5f5f5;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    .category:hover {
+        background: #e5e5e5;
+        transform: scale(1.02);
     }
     .category::before {
         font-family: "Font Awesome 6 Free";
@@ -72,9 +81,13 @@
         position: relative;
         margin: 0 10px;
     }
+    .item ul li:hover {
+        transform: scale(1.02);
+        background: #f5f5f5;
+    }
     .item ul li > a {
         color: #333;
-        font-size: 16px;
+        font-size: 18px;
         text-decoration: none;
         padding: 8px 0;
         display: flex;
@@ -104,6 +117,10 @@
     .item ul li ul li {
         padding: 8px 0;
         border-bottom: 1px solid #f0f0f0;
+        font-size: 12px;
+    }
+    .item ul li ul li:hover {
+        background: #f9f9f9;
     }
     .item ul li ul li:last-child {
         border-bottom: none;
@@ -121,6 +138,12 @@
         border-radius: 6px;
         cursor: pointer;
         margin-left: 20px;
+    }
+    .join:hover {
+        background: #39CCCC;
+        transform: scale(1.02);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-color: #39CCCC;
     }
 </style>
 <body>
