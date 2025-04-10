@@ -89,7 +89,6 @@
         .input-group textarea {
             height: 150px;
             padding: 15px;
-            resize: vertical;
         }
         .required-field::after {
             font-family: "Font Awesome 6 Free";
@@ -202,16 +201,16 @@
             border-right: 6px solid transparent;
             border-top: 6px solid black;
         }
-        .input-group:hover ~.input-text {
+        .input-group:active ~.input-text {
             display: block;
         }
-        .input-group:focus-within > span:first-child {
+        .input-group:hover > span:first-child {
             background-color: black;
             color: white;
         }
-        .input-group input:focus,
-        .input-group select:focus,
-        .input-group textarea:focus {
+        .input-group input:hover,
+        .input-group select:hover,
+        .input-group textarea:hover {
             border-color: #000000;
         }
         .input-group:focus-within.required-field::after {
