@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="
+https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
+" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /*phan sidebar*/
+    header {
+        display: flex;
+        flex-direction: column;
+        background-color:#333333 ;
+        color:#DDDDDD ;
+        max-width: 15%;
+        height: 100vh;
+        line-height: 1.5;
+        padding: 5px;
+        position: relative;
+    }
+    .menu {
+        padding: 5px;
+        margin: 5px;
+    }
+    .element {
+        padding: 10px;
+    }
+    li {
+        list-style: none;
+        padding: 10px;
+    }
+    li::before {
+        margin: 5px;
+    }
+    li:hover {
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    .title li:nth-of-type(2)::after {
+        content: '\f078';
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 8px;
+        padding-left: 10px;
+        position: relative;
+        right: -40px;
+    }
+    .src {
+        position: absolute;
+        padding: 10px;
+        bottom: 5px;
+        font-size: 12px;
+    }
+    /*phan table*/
+    .main-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding:30px;
+        width: 800px;
+        margin: 0 auto;
+        position: absolute;
+        top:10%;
+        left: 33%;
+    }
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+    }
+    .data-table th {
+        text-align: center;
+        padding: 10px 20px;
+        font-weight: 600;
+        font-size: 20px;
+        border-bottom: 1px solid #dddddd;
+    }
+    .data-table td {
+        text-align: center;
+        padding: 15px 20px;
+        vertical-align: middle;
+    }
+    .data-table tr td {
+        border-bottom: 1px solid #dddddd;
+    }
+    .data-table tr:hover {
+        background-color: #f9f9f9;
+    }
+    /*nut button*/
+    .action-buttons {
+        display: flex;
+    }
+    .edit {
+        padding: 5px 8px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        background-color: #4CAF50;
+        color: #ffffff;
+        margin: 5px;
+        border:none;
+    }
+    .edit::before {
+        padding-right: 5px;
+    }
+    .delete {
+        padding: 5px 8px;
+        cursor: pointer;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        background-color: #F44336;
+        color: white;
+        margin: 5px;
+        border:none;
+    }
+    .delete::before {
+        padding-right: 5px;
+    }
+    .information {
+        display: none;
+        width: 600px;
+        transform: translate(-50%, -50%);
+        background-color: rgb(192,192,192);
+        position: absolute;
+        z-index: 1;
+        top: 140%;
+        left: 45%;
+    }
+    .form-header {
+        background-color: rgba(128,128, 128, 0.8);
+        color: #ffffff;
+        text-align: left;
+        font-size: 24px;
+        padding: 10px;
+    }
+    .form-header::after {
+        content: "\f00d";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 10px;
+        padding-left: 5px;
+        position: relative;
+        left: 420px;
+        top: -3px;
+    }
+    .form-body {
+        padding: 10px;
+    }
+    .form-body input {
+        padding: 8px;
+        margin: 5px;
+        width: calc(100% - 8px);
+        font-size: 14px;
+    }
+    .form-button {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .form-close {
+        padding: 5px 125px;
+        margin: 5px 12px;
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .form-save {
+        padding: 5px 125px;
+        margin: 5px 0;
+        background-color: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .edit-checkbox {
+        display: none;
+    }
+
+    .edit-checkbox:checked ~ .information {
+        display: block;
+    }
+    .form-header::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        cursor: pointer;
+        z-index: 2;
+    }
+</style>
+
+<body>
+<header class="sidebar">
+    <h1 class=" mdi mdi-stack-overflow">F8 Admin</h1>
+<div class="menu">
+    <div class="element">Menu</div>
+    <div class="title">
+        <ul>
+            <li class="mdi mdi-account">Quản lý đơn hàng</li>
+            <li class="mdi mdi-account">Quản lý đơn Xe</li>
+            <li class="mdi mdi-account">Quản lý dịch vụ</li>
+            <li class="mdi mdi-account">Cài đặt khác</li>
+        </ul>
+        <div class="src">
+            <div>By: Hà Việt Anh</div>
+            <div>F8 Fullstack</div>
+        </div>
+    </div>
+</div>
+</header>
+<main class="main-content">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Members Mail</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Nguyen Van A</td>
+            <td>a@test.com</td>
+            <td>
+                <div class="action-buttons">
+                    <input type="checkbox" id="edit1" class="edit-checkbox" hidden>
+                    <label for="edit1" class="edit mdi mdi-pencil">
+                        Edit
+                    </label>
+                    <button class="delete mdi mdi-trash-can-outline">
+                        Delete
+                    </button>
+                    <div class="information">
+                        <div class="form-header">
+                            <span>New member</span>
+                        </div>
+                        <div class="form-body">
+                            <input type="text" name="skill" id="skill1" placeholder="Skill" >
+                            <input type="text" name="name" id="name1" placeholder="Name" >
+                            <input type="email" name="email" id="email1" placeholder="Email">
+                        </div>
+                        <div class="form-button">
+                            <label for="edit1" class="form-close">Close</label>
+                            <button class="form-save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Nguyen Van B</td>
+            <td>b@test.com</td>
+            <td>
+                <div class="action-buttons">
+                    <input type="checkbox" id="edit2" class="edit-checkbox" hidden>
+                    <label for="edit2" class="edit mdi mdi-pencil">
+                        Edit
+                    </label>
+                    <button class="delete mdi mdi-trash-can-outline">
+                        Delete
+                    </button>
+                    <div class="information">
+                        <div class="form-header">
+                            <span>New member</span>
+                        </div>
+                        <div class="form-body">
+                            <input type="text" name="skill" id="skill2" placeholder="Skill">
+                            <input type="text" name="name" id="name2" placeholder="Name">
+                            <input type="email" name="email" id="email2" placeholder="Email">
+                        </div>
+                        <div class="form-button">
+                            <label for="edit2" class="form-close">Close</label>
+                            <button class="form-save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Nguyen Van C</td>
+            <td>c@test.com</td>
+            <td>
+                <div class="action-buttons">
+                    <input type="checkbox" id="edit3" class="edit-checkbox" hidden>
+                    <label for="edit3" class="edit mdi mdi-pencil">
+                        Edit
+                    </label>
+                    <button class="delete mdi mdi-trash-can-outline">
+                        Delete
+                    </button>
+                    <div class="information">
+                        <div class="form-header">
+                            <span>New member</span>
+                        </div>
+                        <div class="form-body">
+                            <input type="text" name="skill" id="skill3" placeholder="Skill">
+                            <input type="text" name="name" id="name3" placeholder="Name">
+                            <input type="email" name="email" id="email3" placeholder="Email">
+                        </div>
+                        <div class="form-button">
+                            <label for="edit3" class="form-close">Close</label>
+                            <button class="form-save">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>
