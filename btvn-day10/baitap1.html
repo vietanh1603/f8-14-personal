@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bài tập về nhà</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .primary-font-family {
+        font-family: "Space Grotesk", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        font-size: 18px;
+        font-style: normal;
+    }
+    .primary-font-family-text {
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight:400;
+        font-style: normal;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #bebebe;
+    }
+    .bai-tap1 {
+        display: flex;
+    }
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        max-width: 40%;
+        margin: 0 10%;
+    }
+    /*css container*/
+    .container {
+        display: flex;
+        margin-bottom: 0;
+        position: relative;
+    }
+    /*content ben trai*/
+    .content {
+        width: 60%;
+        padding: 20px;
+        text-align: right;
+        position: relative;
+        left:-5%;
+    }
+    /* date ben phai*/
+    .date {
+        width: 30%;
+        padding: 25px 10px;
+        text-align: left;
+        font-size: 16px;
+        justify-content: flex-start;
+    }
+/*css cho button*/
+    button {
+        margin-top: 20px;
+        padding: 5px 10px;
+        border: none;
+        color: #555555 !important;
+        font-weight: 600 !important;
+        background-color: #bebebe;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+    button:hover {
+        background-color: #CC6633;
+    }
+    .timeline-box {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 15%;
+        left: 100%;
+    }
+    /*duong timeline*/
+    .timeline {
+        width: 1px;
+        height: 80px;
+        background-color: #aaaaaa;
+        display: flex;
+        margin: auto;
+    }
+    /*diem maker*/
+    .maker {
+        width: 25px;
+        height: 25px;
+        background-color: rgba(32, 138, 138, 0.3);
+        display: flex;
+        border-radius: 50%;
+    }
+    /*tam xanh*/
+    .icon {
+        width: 10px;
+        height: 10px;
+        margin: auto;
+        border-radius: 50%;
+        background-color: #009933;
+        align-items: center;
+    }
+    /*css anh*/
+    .img-container {
+        display: flex;
+        width: 40%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .content-img img {
+        position: relative;
+        height: 450px;
+    }
+    .box-content {
+        background-image: url("https://hnsofa.com/wp-content/uploads/2023/03/chiem-nguong-50-hinh-anh-phong-canh-buon-tam-trang-cuc-dep_15.jpg");
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 300px;
+        background-size: cover;
+        z-index: 1;
+    }
+</style>
+
+<body>
+<div class="bai-tap1">
+    <div class="timeline-container">
+        <div class="container">
+            <div class="content">
+                <h2 class="primary-font-family">Together We Build</h2>
+                <p class="primary-font-family-text">In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur</p>
+                <button class="primary-font-family-text">Family Law</button>
+                <div class="timeline-box">
+                    <div class="maker">
+                        <div class="icon"></div>
+                    </div>
+                    <div class="timeline"></div>
+                </div>
+            </div>
+            <div class="date primary-font-family-text">
+                2012-2007
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h2 class="primary-font-family">Completed 1000 Cases</h2>
+                <p class="primary-font-family-text">In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur</p>
+                <button class="primary-font-family-text">Criminal Law</button>
+                <div class="timeline-box">
+                    <div class="maker">
+                        <div class="icon"></div>
+                    </div>
+                    <div class="timeline"></div>
+                </div>
+            </div>
+            <div class="date primary-font-family-text">
+                2016-2012
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h2 class="primary-font-family">We Are Number One</h2>
+                <p class="primary-font-family-text">In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur</p>
+                <button class="primary-font-family-text">Business Law</button>
+                <div class="timeline-box">
+                    <div class="maker">
+                        <div class="icon"></div>
+                    </div>
+                    <div class="timeline"></div>
+                </div>
+            </div>
+            <div class="date primary-font-family-text">
+                2018-2016
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h2 class="primary-font-family">Intellectual Property</h2>
+                <p class="primary-font-family-text">In quasi vitae non alias nulla qui .dolores dolor non tempora tenetur</p>
+                <button class="primary-font-family-text">Car Accident</button>
+                <div class="timeline-box">
+                    <div class="maker">
+                        <div class="icon"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="date primary-font-family-text">
+                2022-2018
+            </div>
+        </div>
+    </div>
+
+    <div class="img-container">
+        <div class="content-img">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEohhRgHf993CiRrnHaVTp8x_pHqDZU9957Q&s" alt="ảnh trên">
+        </div>
+        <div class="box-content">
+            <div class="product-item"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

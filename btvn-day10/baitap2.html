@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bài tập 2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Space Grotesk", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+    }
+    .container {
+        display: flex;
+        max-width: 100%;
+        flex-wrap: wrap;
+        padding: 5% 0;
+        margin: 0 15%;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    .product {
+        display: flex;
+        flex-basis: calc(33.333% - 14px);
+        padding: 20px;
+        height: 300px;
+        gap: 15px;
+        border: 2px solid #bebebe;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+    .product .content-wrapper {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .product .background-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://vuongquocanh.com/wp-content/uploads/2018/05/london-eye-800x534.jpg");
+        background-size: cover;
+        background-position: center;
+        display: none;
+    }
+    .product .color-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(255, 201, 100, 1);
+        opacity: 0;
+    }
+    .footer {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+    }
+    .icon-border {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        border: 1px solid white;
+        border-radius: 50%;
+    }
+    .icon-border .mdi {
+        color: white !important;
+        font-size: 8px;
+        transform: scale(0.4);
+    }
+    .product .mdi {
+        font-size: 2.5rem;
+        color: #CC6633;
+        min-width: 40px;
+    }
+    .product h2 {
+        text-align: left;
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .product .normal-text {
+        color: #bebebe;
+        font-weight: 400;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+    .product:hover {
+        cursor: pointer;
+    }
+    .product:hover .background-overlay {
+        display: block;
+        color: #0099CC;
+    }
+    .product:hover h2 {
+        color: white;
+    }
+    .product:hover .color-overlay {
+        opacity: 0.8;
+    }
+    .product:hover .normal-text {
+        color: white;
+    }
+    .product:hover .mdi:not(.icon-border .mdi) {
+        display: none;
+    }
+    .product:hover .footer {
+        display: flex;
+    }
+    .product:hover .footer span {
+        color: white;
+    }
+</style>
+
+<body>
+<div class="container">
+    <!-- Product 1 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-home-outline"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-bag-personal-tag-outline"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-gavel"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-charity"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-scale-balance"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product">
+        <div class="background-overlay"></div>
+        <div class="color-overlay"></div>
+        <div class="content-wrapper">
+            <div class="mdi mdi-handcuffs"></div>
+            <div>
+                <h2>This is war, and in war the only crime is to lose</h2>
+                <span class="normal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, laborum.</span>
+                <div class="footer">
+                    <span>Learn More</span>
+                    <div class="icon-border">
+                        <div class="mdi mdi-arrow-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

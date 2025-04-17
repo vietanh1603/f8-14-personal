@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bài tập 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid black;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        padding: 20px;
+        font-size: 24px;
+        text-align: center;
+    }
+    .head-text {
+        width: 200%;
+        text-align: center;
+        color: #666;
+        padding: 0 20px 20px;
+        display: block;
+    }
+    td {
+        padding: 20px;
+        width: 50%;
+    }
+    .input-container {
+        position: relative;
+        margin-bottom: 5px;
+    }
+    input, select {
+        width: 100%;
+        height: 60px;
+        padding: 0 10px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        border-radius: 5px;
+        position:relative;
+    }
+    textarea {
+        width: calc(100% - 20px);
+        height: 160px;
+        padding: 35px 15px 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        position: relative;
+    }
+    .floating-label {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        color: #999;
+        font-size: 16px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        z-index: 0;
+    }
+    .required::after {
+        content: " *";
+        color: #FF3333;
+    }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #999999;
+    }
+    input:focus + .floating-label,
+    input:valid + .floating-label,
+    textarea:focus + .floating-label,
+    textarea:valid + .floating-label {
+        top: 8px;
+        left: 15px;
+        font-size: 12px;
+        color: #bebebe;
+    }
+    select:focus + .floating-label,
+    select:valid + .floating-label {
+        top: 8px;
+        left: 25px;
+        font-size: 12px;
+        color: #bebebe;
+    }
+    select option[value=""] {
+        color: #999;
+    }
+    button {
+        width: 200px;
+        padding: 12px;
+        background-color: #FF3333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .button-container {
+        text-align: center;
+        padding-top: 10px;
+    }
+    button:hover {
+        background-color: #339900;
+    }
+</style>
+
+<body>
+<div>
+    <form action="">
+        <table class="container">
+            <thead>
+            <tr>
+                <th colspan="2">Drop Us a Line</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="head-text">Reach out to us from our contact form and we will get back to you shortly.</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="input-container">
+                        <input type="text" name="name" id="first-name" required>
+                        <label for="first-name" class="floating-label required">First Name</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-container">
+                        <input type="text" name="lastname" id="last-name" required>
+                        <label for="last-name" class="floating-label required">Last Name</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input-container">
+                        <input type="email" name="email" id="email" required>
+                        <label for="email" class="floating-label required">Email</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-container">
+                        <select name="sales" id="sales" required>
+                            <option value="" selected disabled hidden></option>
+                            <option value="USA">USA</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <label for="sales" class="floating-label required">Sales</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="input-container">
+                        <textarea name="message" id="message" required></textarea>
+                        <label for="message" class="floating-label required">Message</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="button-container">
+                        <button type="submit">Submit</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>
