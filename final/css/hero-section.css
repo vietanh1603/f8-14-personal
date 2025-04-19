@@ -1,0 +1,203 @@
+.hero-section {
+    display: flex;
+    padding: 80px 195px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
+}
+.hero-frame {
+    display: flex;
+    width: 1050px;
+    align-items: flex-start;
+    gap: 30px;
+}
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    flex: 1 0 0;
+}
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    align-self: stretch;
+}
+.hero-text h1 {
+    display: flex;
+    margin-top: 0;
+    width: 510px;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 0;
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 67px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 110%;
+    text-transform: capitalize;
+}
+.hero-text p {
+    align-self: stretch;
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 35.2px */
+    text-transform: capitalize;
+}
+.hero-button button {
+    border: none;
+}
+.hero-button button span {
+    color: #FFF;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 22.4px */
+}
+.container-additional {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+}
+.additional-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+.additional-info h4 {
+    color: #FFF;
+    font-family: "Space Mono";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 140%; /* 39.2px */
+    text-transform: capitalize;
+    margin: 0;
+}
+.additional-info span {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 23.99px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 38.384px */
+    text-transform: capitalize;
+}
+.hero-image {
+    display: flex;
+    height: 510px;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+}
+.hero-image-placeholder {
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 20px 20px 0 0;
+    background: url(../img-hero-selection/hero-placeholder.png) lightgray 50% / cover no-repeat;
+}
+.hero-section-frame {
+    display: flex;
+    height: 109px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 0px 0px 20px 20px;
+    background: #3B3B3B;
+}
+
+.hero-section-frame h5 {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%; /* 30.8px */
+    text-transform: capitalize;
+    align-items: flex-start;
+    align-self: stretch;
+    margin-bottom: 10px;
+}
+.artist-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+.artist-card image {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.artist-card span {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+/*responsive cho table va mobile*/
+@media screen and (max-width: 991px) {
+    .hero-section {
+        padding: 80px 0;
+    }
+    .hero-frame {
+        width: 690px;
+    }
+    .hero-container {
+        width: 330px;
+    }
+    .hero-text h1 {
+        width: 330px;
+        font-size: 38px;
+    }
+    .hero-text p {
+        font-size: 16px;
+    }
+    .hero-button button img {
+        width: 20px;
+        height: 20px;
+    }
+    .hero-button button span {
+        font-size: 16px;
+    }
+    .additional-info h4 {
+        font-size: 22px;
+    }
+    .additional-info span {
+        font-size: 16px;
+    }
+    .hero-image {
+        height: 330px;
+    }
+    .hero-section-frame {
+        height: 109px;
+        padding: 20px;
+    }
+    .hero-section-frame h5 {
+        font-size: 22px;
+    }
+    .artist-card img {
+        width: 24px;
+        height: 24px;
+    }
+    .artist-card span {
+        font-size: 16px;
+    }
+}

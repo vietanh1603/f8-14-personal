@@ -1,0 +1,111 @@
+.top-rate {
+    display: flex;
+    padding: 80px 195px;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    align-self: stretch;
+}
+.top-rate-section {
+    display: flex;
+    width: 1050px;
+    align-items: flex-end;
+    gap: 100px;
+}
+.top-rate-head {
+    display: flex;
+    width: 703px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+}
+.top-rate-head h3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* 45.6px */
+    text-transform: capitalize;
+    flex: 1 0 0;
+}
+.top-rate-subhead p {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 35.2px */
+    text-transform: capitalize;
+    flex: 1 0 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+}
+.top-rate-button img {
+    width: 20px;
+    height: 20px;
+}
+.artist-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+.artist-card-row {
+    display: flex;
+    width: 1050px;
+    align-items: flex-start;
+    gap: 30px;
+}
+.artist-card-element {
+
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1 0 0;
+    border-radius: 20px;
+    background: #3B3B3B;
+    position: relative;
+}
+.artist-card-element img {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-radius: 100px;
+}
+.artist-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    align-self: stretch;
+}
+.ranking {
+    display: flex;
+    width: 30px;
+    align-items: flex-start;
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    border-radius: 20px;
+    background: #2B2B2B;
+}
+.ranking p {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    color: #858584;
+}
