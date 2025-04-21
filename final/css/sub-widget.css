@@ -17,7 +17,7 @@
     height: 310px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../img-sub-widget/Photo.png) lightgray 50% / cover no-repeat;
+    background: url(../img/img-sub-widget/Photo.png) lightgray 50% / cover no-repeat;
 }
 .sub-widget-heading {
     display: flex;

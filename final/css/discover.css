@@ -54,15 +54,15 @@
     flex: 1 0 0;
     align-self: stretch;
     border-radius: 20px 20px 0 0;
-    background: url(../img-ntf/ntf1.png) lightgray 50% / cover no-repeat;
+    background: url(../img/img-ntf/ntf1.png) lightgray 50% / cover no-repeat;
 }
 .background-overlay-2 {
     border-radius: 20px 20px 0 0;
-    background: url(../img-ntf/ntf2.png) lightgray 50% / cover no-repeat;
+    background: url(../img/img-ntf/ntf2.png) lightgray 50% / cover no-repeat;
 }
 .background-overlay-3 {
     border-radius: 20px 20px 0 0;
-    background: url(../img-ntf/ntf3.png) lightgray 50% / cover no-repeat;
+    background: url(../img/img-ntf/ntf3.png) lightgray 50% / cover no-repeat;
 }
 .ntf-info {
     display: flex;

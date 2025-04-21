@@ -71,7 +71,7 @@
     height: 330px;
     align-self: stretch;
     border-radius: 20px;
-    background:url(../trending-img/trending-img1.png) lightgray 50% / cover no-repeat;
+    background:url(../img/trending-img/trending-img1.png) lightgray 50% / cover no-repeat;
 }
 .trending-card-element {
     display: flex;
@@ -84,14 +84,14 @@
     width: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img2.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img2.png) lightgray 50% / cover no-repeat;
 }
 .background-section-3 {
     height: 100px;
     width: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img3.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img3.png) lightgray 50% / cover no-repeat;
 }
 .trending-card-about {
     display: flex;
@@ -119,37 +119,37 @@
     height: 330px;
     align-self: stretch;
     border-radius: 20px;
-    background:url(../trending-img/trending-img5.png) lightgray 50% / cover no-repeat;
+    background:url(../img/trending-img/trending-img5.png) lightgray 50% / cover no-repeat;
 }
 .background-section-5 {
     height: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img4.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img4.png) lightgray 50% / cover no-repeat;
 }
 .background-section-6 {
     height: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img6.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img6.png) lightgray 50% / cover no-repeat;
 }
 .trending-background-7 {
      height: 330px;
      align-self: stretch;
      border-radius: 20px;
-     background:url(../trending-img/trending-img7.png) lightgray 50% / cover no-repeat;;
+     background:url(../img/trending-img/trending-img7.png) lightgray 50% / cover no-repeat;;
  }
 .background-section-8 {
     height: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img8.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img8.png) lightgray 50% / cover no-repeat;
 }
 .background-section-9 {
     height: 100px;
     flex: 1 0 0;
     border-radius: 20px;
-    background: url(../trending-img/trending-img9.png) lightgray 50% / cover no-repeat;
+    background: url(../img/trending-img/trending-img9.png) lightgray 50% / cover no-repeat;
 }
 .trending-card-text {
     display: flex;
