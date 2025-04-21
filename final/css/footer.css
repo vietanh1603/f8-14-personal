@@ -1,0 +1,106 @@
+.footer {
+    display: flex;
+    padding: 40px 195px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    align-self: stretch;
+    background:#3B3B3B;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.footer-left {
+    display: flex;
+    width: 327.414px;
+    padding-right: 84px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+}
+.footer-left-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+}
+.footer-left-social {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.footer-center {
+    display: flex;
+    width: 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+}
+.pages-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.footer-form-subscribe {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+form button {
+    color: #FFF;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%
+}
+.footer-bottom {
+    display: flex;
+    width: 1049.414px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+.footer-bottom hr {
+    width: 1049.414px;
+    height: 1px;
+    background: #858584;
+}
+.footer-bottom p {
+    color: #CCC;
+    font-family: "Work Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    align-self: stretch;
+}
+@media screen and (max-width: 991px) {
+    .footer {
+        padding: 40px 195px;
+        gap: 49px;
+    }
+    .footer-container {
+        flex-direction: column;
+        width: 690px;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    .footer-bottom {
+        width: 690px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}

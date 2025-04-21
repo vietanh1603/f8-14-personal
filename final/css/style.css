@@ -83,3 +83,56 @@ body {
     line-height: 120%; /* 45.6px */
     text-transform: capitalize;
 }
+.font-size-16 {
+    color: #FFF;
+    text-align: center;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+.font-size-22 {
+    color:  #FFF;
+    font-family: "Work Sans";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 35.2px */
+    text-transform: capitalize;
+}
+.font-size-12 {
+    font-size: 12px;
+}
+.font-h2 {
+    color: #FFF;
+    font-family: "Work Sans";
+    font-size: 51px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 110%; /* 56.1px */
+    text-transform: capitalize;
+    align-self: stretch;
+}
+.font-size-h5-footer {
+    color: #FFF;
+    font-family: "Space Mono";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+    text-transform: capitalize;
+}
+.font-size-16-footer {
+    color: #CCC;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+.size-person {
+    width: 20px;
+    height: 20px;
+}
+

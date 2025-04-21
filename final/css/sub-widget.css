@@ -1,0 +1,101 @@
+.sub-widget {
+    display: flex;
+    padding: 40px 195px 80px 195px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+.sub-widget-form {
+    display: flex;
+    width: 1050px;
+    padding: 60px;
+    align-items: center;
+    gap: 80px;
+}
+.background-sub-widget {
+    height: 310px;
+    flex: 1 0 0;
+    border-radius: 20px;
+    background: url(../img-sub-widget/Photo.png) lightgray 50% / cover no-repeat;
+}
+.sub-widget-heading {
+    display: flex;
+    width: 425px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    flex-shrink: 0;
+}
+form {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+form input {
+    width: 230px;
+    display: flex;
+    height: 60px;
+    padding: 16px 0 16px 20px;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 20px;
+}
+form input::placeholder {
+    color: #2B2B2B;
+    font-family: "Work Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+form button {
+    display: flex;
+    height: 60px;
+    padding: 0 50px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    border-radius: 20px;
+    background:#A259FF;
+    position: absolute;
+    left: 195px;
+    border: none;
+}
+@media screen and (max-width: 991px) {
+    .sub-widget {
+        padding: 40px 0 80px 0;
+        flex-direction: column;
+    }
+    .sub-widget-form {
+        width: 690px;
+        padding: 40px 30px;
+    }
+    .sub-widget-heading {
+        gap: 40px;
+        flex: 1 0 0;
+    }
+    .sub-widget-heading h4 {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 140%;
+    }
+    .sub-widget-heading p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 140%;
+    }
+    .sub-widget-heading input {
+        height: 46px;
+        padding: 16px 20px;
+        width: 300px;
+    }
+    .sub-widget-heading button {
+        height: 46px;
+        padding: 0 50px;
+        left: 0;
+        top: 62px;
+        width: 300px;
+    }
+}

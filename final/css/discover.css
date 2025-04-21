@@ -1,0 +1,135 @@
+.discover {
+    display: flex;
+    padding: 80px 114px;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    align-self: stretch;
+}
+.discover-headline {
+    display: flex;
+    width: 1050px;
+    align-items: flex-end;
+    gap: 100px;
+}
+.headline-text {
+    display: flex;
+    min-width: 400px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+}
+.discover-headline button {
+    display: flex;
+    height: 60px;
+    padding: 0 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.ntf-card-row {
+    width: 1050px;
+    margin:  auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    align-self: stretch;
+}
+.ntf-card {
+    display: flex;
+    height: 469px;
+    min-width: 260px;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 0;
+    border-radius: 20px;
+    background: #3B3B3B;
+}
+.ntf-background {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 20px 20px 0 0;
+    background: url(../img-ntf/ntf1.png) lightgray 50% / cover no-repeat;
+}
+.background-overlay-2 {
+    border-radius: 20px 20px 0 0;
+    background: url(../img-ntf/ntf2.png) lightgray 50% / cover no-repeat;
+}
+.background-overlay-3 {
+    border-radius: 20px 20px 0 0;
+    background: url(../img-ntf/ntf3.png) lightgray 50% / cover no-repeat;
+}
+.ntf-info {
+    display: flex;
+    padding: 20px 30px 25px 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    align-self: stretch;
+}
+.artist-info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    align-self: stretch;
+}
+.artist-info-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+.ntf-additional-info {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+}
+.ntf-price {
+    display: flex;
+    padding-right: 21px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+.highest-bid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+    flex: 1 0 0;
+}
+@media screen and (max-width: 991px) {
+    .discover {
+        padding: 40px 0 80px 0;
+        gap: 40px;
+    }
+    .discover-headline {
+        width: 690px;
+    }
+    .headline-text h3 {
+        font-size: 28px;
+    }
+    .headline-text p {
+        font-size: 16px;
+    }
+    .ntf-card-row {
+        width: 690px;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .ntf-card {
+        height: 469px;
+        max-width: 330px;
+    }
+    .ntf-background {
+        height: 295px;
+    }
+}

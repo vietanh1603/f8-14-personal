@@ -201,3 +201,55 @@
         font-size: 16px;
     }
 }
+@media screen and (max-width: 767px) {
+    .hero-section {
+        padding: 40px 0;
+    }
+    .hero-frame {
+        width: 315px;
+    }
+    .hero-container {
+        position: relative;
+    }
+    .hero-text h1 {
+        font-size: 28px;
+        line-height: 140%;
+        text-transform: capitalize;
+    }
+    .hero-text p {
+        font-size: 16px;
+        line-height: 140%;
+    }
+    .hero-image {
+        height: 315px;
+        flex-direction: column;
+    }
+    .hero-section-frame {
+        height: 109px;
+        padding: 20px;
+    }
+    .hero-section-frame h5 {
+        font-size: 22px;
+        line-height: 140%;
+    }
+    .hero-section-frame p {
+        font-size: 16px;
+        line-height: 140%;
+    }
+    .hero-button {
+        height: 60px;
+        padding: 0 50px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+    }
+    .container-additional h5 {
+        font-size: 22px;
+        line-height: 160%;
+    }
+    .container-additional p {
+        font-size: 16px;
+        line-height: 140%;
+    }
+}

@@ -109,3 +109,46 @@
     top: 4px;
     color: #858584;
 }
+@media screen and (max-width: 991px) {
+    .top-rate {
+        padding: 40px 195px;
+    }
+    .top-rate-section {
+        width: 690px;
+    }
+    .top-rate-head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1 0 0;
+    }
+    .top-rate-head h3 {
+        font-size: 28px;
+    }
+    .top-rate-head p {
+        font-size: 16px;
+    }
+    .artist-card-container {
+        max-width: 690px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .artist-card-row {
+        width: 690px;
+        flex-direction: row;
+        flex-wrap: wrap !important;
+        align-items: flex-start;
+        gap: 30px;
+        align-self: stretch;
+    }
+    .artist-card-element {
+        flex-direction: row;
+    }
+    .artist-card-element img {
+        width: 60px;
+        height: 60px;
+    }
+}
+@media screen and (max-width: 767px) {
+
+}
