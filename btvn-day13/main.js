@@ -124,8 +124,65 @@ for (let i = 0; i < bai2.length; i++) {
 console.log(result); // [1, 2, 3, 4, 5]
 
 // bài 3
+/*
+-------------------------------- sơ đồ tư duy ---------------------------------------------
 
 
+      ┌───────────────────┐
+      │                   │
+      │   let arr= [...]  │
+      │                   │
+      │   number = ?      │
+      └─────────┬─────────┘
+                │
+                │
+                ▼
+       ┌────────────────┐
+       │   arr.sort()   │
+       └───────┬────────┘
+               │
+               │
+               ▼
+  ┌────────────────────────────────┐
+  │let insert=0, insert<length.arr ├───────┐
+  └─────────────┬──────────────────┘       │
+                │                          │
+                │                          │
+                ▼                          │
+     ┌──────────────────────┐   false      │
+     │ number < arr[insert] ┼──────────────┘
+     └──────────┬───────────┘
+                │ true
+                ▼ break
+    ┌──────────────────────────────────┐
+    │ arr.splice(insertIndex, 0, num); │
+    └──────────┬───────────────────────┘
+               │
+               ▼
+      ┌─────────────────────┐
+      │  console.log(arr)   │
+      └─────────────────────┘
+ */
+
+let bai3 = [1, 3, 5, 6];  // Giả sử mảng ban đầu
+let number =4;
+
+// Sắp xếp mảng tăng dần (nếu chưa chắc chắn là đã sắp xếp)
+bai3.sort((a, b) => a - b);
+
+let insertIndex = 0;
+while (insertIndex < bai3.length) {
+    if (number < bai3[insertIndex]) {
+        break;
+    }
+    insertIndex++;
+}
+
+// Chèn số vào đúng vị trí
+bai3.splice(insertIndex, 0, number);
+
+// In kết quả
+console.log(bai3);
 
 
 
