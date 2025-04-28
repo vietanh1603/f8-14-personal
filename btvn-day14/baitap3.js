@@ -14,7 +14,7 @@
                            ┌───────────────────────────────────┐
                            │  const student = students[i]      │
                            │  const className = students.class │
-                           │  const socer = students.class     │
+                           │  const score = students.score     │
                            └─────────────┬─────────────────────┘
                                          │
                                          │
