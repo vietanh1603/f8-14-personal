@@ -213,29 +213,36 @@
         display: flex;
         flex-direction: column;
         position :relative;
+        height: 700px;
     }
     .hero-frame {
         width: 315px;
     }
     .hero-container {
-        position: relative;
+        /*position: relative;*/
     }
     .hero-text h1 {
         font-size: 28px;
         line-height: 140%;
         text-transform: capitalize;
     }
+    .hero-text {
+        position: relative;
+        padding: 40px 0;
+        top: -140px;
+    }
     .hero-text p {
         font-size: 16px;
         line-height: 140%;
+
     }
     .hero-image {
         height: 315px;
         width:300px;
         flex-direction: column;
-        /*position: relative;*/
-        /*left: 70px;*/
-        /*top: 220px;*/
+        position: absolute;
+        left: 70px;
+        top: 220px;
     }
     .hero-section-frame {
         height: 109px;
@@ -257,8 +264,8 @@
         align-items: center;
         gap: 12px;
         align-self: stretch;
-        /*position: relative;*/
-        /*top:100px*/
+        position: relative;
+        top:150px
     }
     .container-additional h5 {
         font-size: 22px;
@@ -272,6 +279,10 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+    }
+    .container-additional {
+        position: relative;
+        top: 150px;
     }
 
 }

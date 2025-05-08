@@ -176,9 +176,10 @@
         align-self: stretch;
     }
     .top-rate-section button {
+    height: 50px;
         width: 315px ;
         position: absolute;
-        top: 1750px;
+        top: 1740px;
         left: 50px;
     }
 }
