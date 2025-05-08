@@ -9,16 +9,15 @@ nav {
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center;
+    cursor: pointer;
 }
-.logo img:nth-of-type(1) {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-}
-.logo img:nth-of-type(2){
+.logo .name-logo {
     width: 199.414px;
     height: 19.8px;
     flex-shrink: 0;
+    position : relative;
+    top: 3px;
 }
 nav ul {
     display: flex;
@@ -34,36 +33,23 @@ nav ul {
 }
 .nav-menu ul li {
     list-style: none;
-}
-.nav-menu ul li:nth-of-type(1) button {
     display: flex;
     height: 46px;
-    padding: 0 20px;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     gap: 12px;
-    border-radius: 20px;
-    border: none;
+    cursor: pointer;
 }
-.nav-menu ul li:nth-of-type(2) button {
-    display: flex;
-    height: 46px;
-    padding: 0 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    border-radius: 20px;
-    border: none;
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #FFF;
+    text-align: center;
+    font-family: "Work Sans";
+    font-weight: 600;
 }
-.nav-menu ul li:nth-of-type(3) button {
-    display: flex;
-    height: 46px;
-    padding: 0 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    border-radius: 20px;
-    border: none;
+.nav-menu ul li a:hover {
+    transform: scale(1.05);
 }
 .button-sign-up {
     display: flex;
@@ -93,30 +79,31 @@ nav ul {
     .nav-list {
         display: none;
     }
-    .nav-menu button {
-    display: none;}
-    .icon-nav {
-        display: block;
-    }
-}
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .navbar {
-        display: flex;
-        padding: 15px 50px;
-        justify-content: space-between;
-        align-items: center;
-        align-self: stretch;
-    }
     .icon-nav {
         display: flex;
-        padding: 15px 50px;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
-        align-self: stretch;
-        width: 24px;
-        height: 24px;
+        gap: 20px;
     }
 }
+/*@media (min-width: 768px) and (max-width: 991.98px) {*/
+/*    .navbar {*/
+/*        display: flex;*/
+/*        padding: 15px 50px;*/
+/*        justify-content: space-between;*/
+/*        align-items: center;*/
+/*        align-self: stretch;*/
+/*    }*/
+/*    .icon-nav {*/
+/*        display: flex;*/
+/*        padding: 15px 50px;*/
+/*        justify-content: space-between;*/
+/*        align-items: center;*/
+/*        align-self: stretch;*/
+/*        width: 24px;*/
+/*        height: 24px;*/
+/*    }*/
+/*}*/
 @media screen and (max-width: 767px) {
     .navbar {
         display: flex;

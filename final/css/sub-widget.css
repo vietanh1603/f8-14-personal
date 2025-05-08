@@ -5,6 +5,7 @@
     align-items: center;
     gap: 10px;
     align-self: stretch;
+
 }
 .sub-widget-form {
     display: flex;
@@ -12,6 +13,8 @@
     padding: 60px;
     align-items: center;
     gap: 80px;
+    background: #3B3B3B;
+    border-radius: 20px;
 }
 .background-sub-widget {
     height: 310px;
@@ -71,6 +74,7 @@ form button {
     .sub-widget-form {
         width: 690px;
         padding: 40px 30px;
+        gap: 30px;
     }
     .sub-widget-heading {
         gap: 40px;
@@ -97,5 +101,12 @@ form button {
         left: 0;
         top: 62px;
         width: 300px;
+    }
+    .sub-widget-heading {
+        position: relative;
+        top: -40px;
+    }
+    .sub-widget-heading-text h2 {
+        font-size: 28px;
     }
 }

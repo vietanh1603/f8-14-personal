@@ -1,5 +1,5 @@
 * {
-    padding: 0;
+    padding: 0px;
     margin: 0;
     box-sizing: border-box;
 }
@@ -74,7 +74,7 @@ body {
     line-height: 140%; /* 22.4px */
     flex: 1 0 0;
 }
-.font-size-h3 {
+.font-size-h2 {
     color:#FFF;
     font-family: "Work Sans";
     font-size: 38px;
@@ -105,13 +105,14 @@ body {
     font-size: 12px;
 }
 .font-h2 {
-    color: #FFF;
+    color: #FFF;/
     font-family: "Work Sans";
-    font-size: 51px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 600;
-    line-height: 110%; /* 56.1px */
+    line-height: 120%; /* 45.6px */
     text-transform: capitalize;
+    flex: 1 0 0;
     align-self: stretch;
 }
 .font-size-h5-footer {
@@ -135,4 +136,23 @@ body {
     width: 20px;
     height: 20px;
 }
-
+button   {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+input {
+    outline: none;
+    border: none;
+}
+button:hover {
+    transform: scale(1.05);
+}
+a {
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+a:hover {
+    transform: scale(1.05);
+}

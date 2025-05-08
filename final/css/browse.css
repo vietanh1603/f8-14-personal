@@ -106,7 +106,7 @@
     border-radius: 20px 20px 0 0;
     background: url(/final/img/img-category/category8.png) lightgray 50% / cover no-repeat;
 }
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 768px) and (max-width: 991px) {
     .browse-categories {
         padding: 40px 0;
         gap: 40px;
@@ -151,5 +151,24 @@
     }
     .category-name h5 {
         font-size: 16px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .browse-headline {
+        width: 315px;
+    }
+    .browse-headline h2 {
+        font-size: 28px;
+    }
+    .category-list {
+        width: 315px;
+        height: 918px;
+        flex-direction: row;
+    }
+    .category-list-row {
+        flex-direction: column;
+    }
+    .category-list-item {
+        height: 142px;
     }
 }

@@ -86,6 +86,13 @@ form button {
     line-height: 110%;
     align-self: stretch;
 }
+.footer-left-social img:hover {
+    transform: scale(1.05);
+    color: #A259FF;
+}
+.pages-footer a:hover {
+    color: #A259FF;
+}
 @media screen and (max-width: 991px) {
     .footer {
         padding: 40px 195px;
