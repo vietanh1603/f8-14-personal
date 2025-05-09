@@ -51,7 +51,7 @@
     flex-shrink: 0;
     align-self: stretch;
     border-radius: 20px 20px 0 0;
-    background: url(/final/img/img-category/category1.png) lightgray 50% / cover no-repeat;
+    background: url(../img/img-category/category1.png) lightgray 50% / cover no-repeat;
 }
 .category-icon {
     display: flex;
