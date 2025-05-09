@@ -14,6 +14,7 @@
 }
 .hero-container {
     display: flex;
+    width: calc((100% - 30px)/2);
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
@@ -97,6 +98,7 @@
 .hero-image {
     display: flex;
     height: 510px;
+    width: calc((100% - 30px)/2);
     flex-direction: column;
     align-items: center;
     flex: 1 0 0;
@@ -216,7 +218,9 @@
         height: 700px;
     }
     .hero-frame {
-        width: 315px;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
     }
     .hero-container {
         /*position: relative;*/
@@ -224,7 +228,6 @@
     .hero-text h1 {
         font-size: 28px;
         line-height: 140%;
-        text-transform: capitalize;
     }
     .hero-text {
         position: relative;
@@ -237,11 +240,10 @@
 
     }
     .hero-image {
-        height: 315px;
-        width:300px;
+        width:80%;
         flex-direction: column;
         position: absolute;
-        left: 70px;
+        left: 10%;
         top: 220px;
     }
     .hero-section-frame {
@@ -259,13 +261,10 @@
     .hero-button {
         height: 60px;
         padding: 0 50px;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        align-self: stretch;
+        max-width: 500px;
         position: relative;
-        top:150px
+        top:150px;
+        left:-0%;
     }
     .container-additional h5 {
         font-size: 22px;
