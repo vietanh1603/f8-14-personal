@@ -27,57 +27,88 @@ const orders = [
     { id: 1009, customerId: 4, items: [{ productId: 101, quantity: 1 }, { productId: 102, quantity: 1 }] },
     { id: 1010, customerId: 5, items: [{ productId: 103, quantity: 4 }, { productId: 104, quantity: 3 }] },
 ];
-// Bước 1: Tạo bản đồ sản phẩm để tra cứu dễ dàng
-const productMap = {};
-products.forEach(product => {
-    productMap[product.id] = product;
-});
+/*---------------- so do thuat toan -----------------------------
 
-// Bước 2: Xử lý từng khách hàng
-const result = customers.map(customer => {
-    // Tìm tất cả đơn hàng của khách hàng này
-    const customerOrders = orders.filter(order => order.customerId === customer.id);
+                           ┌────────────────────┐
+                           │   const = result   │
+                           └────────┬───────────┘
+                                    │
+                                    │
+                      ┌─────────────▼───────────────────────────┐
+                      │ Lap qua tung khach hang                 │
+                      │                                         │
+                      │    orders.customerId === customers.id   │
+                      └────────────┬────────────────────────────┘
+                                   │
+                  ┌────────────────▼─────────────────────────────┐
+                  │     duyet tung don hang cua khach hang nayf  │
+                  │  if order.customerId === customers.id        │
+                  └────────────────┬─────────────────────────────┘
+                                   │
+                           ┌───────▼─────────────────┐
+                           │   tim san pham theo id  │
+                           │ va them vao danh sach   │
+                           └──────┬──────────────────┘
+                                  ▼                                     ┌────────────────────┐
+              ┌───────────────────────────────────────────────┐         │                    │
+              │                                               │         │them vao danh sach  │
+              │  kiem tra san pham da co trong danh sach chua ├────────►│                    │
+              │                                               │         └─────────┬──────────┘
+              └────────────────────────┬──────────────────────┘                   │
+                                       │                                          │
+                   ┌───────────────────▼──────────────────────────┐               │
+                   │     tinh tong tien san pham nay              ◄───────────────┘
+                   │ itemTotal = product.price * item.quantity;   │
+                   └───────────────────┬──────────────────────────┘
+                                       │
+                       ┌───────────────▼─────────────────┐
+                       │                                 │
+                       │    tong chi tieu cua khach hang │
+                       │   spentTotal += itemTotal       │
+                       │                                 │
+                       └───────────────┬─────────────────┘
+                                       │
+                                       │
+                             ┌─────────▼──────┐
+                             │  result.push   │
+                             │                │
+                             └────────────────┘
+ */
+let result = [];
 
-    // Đối tượng để tích lũy số lượng và tổng tiền sản phẩm
-    const productSummary = {};
+for (let customer of customers) {
+    let customerOrders = orders.filter(order => order.customerId === customer.id);
 
-    // Xử lý từng đơn hàng
-    customerOrders.forEach(order => {
-        order.items.forEach(item => {
-            const product = productMap[item.productId];
-
-            if (!productSummary[product.id]) {
-                productSummary[product.id] = {
+    let totalSpent = 0;
+    let productList = [];
+    for (let order of customerOrders) {
+        for (let item of order.items) {
+            let product = products.find(p => p.id === item.productId);
+            let itemTotal = product.price * item.quantity;
+            totalSpent += itemTotal;
+            let existingProduct = productList.find(p => p.name === product.name);
+            if (existingProduct) {
+                existingProduct.quantity += item.quantity;
+                existingProduct.totalSpent += itemTotal;
+            } else {
+                // Nếu chưa có thì thêm mới
+                productList.push({
                     name: product.name,
-                    quantity: 0,
-                    totalSpent: 0
-                };
+                    quantity: item.quantity,
+                    totalSpent: itemTotal
+                });
             }
-
-            productSummary[product.id].quantity += item.quantity;
-            productSummary[product.id].totalSpent += item.quantity * product.price;
+        }
+    }
+    if (totalSpent > 0) {
+        result.push({
+            id: customer.id,
+            name: customer.name,
+            totalSpent: totalSpent,
+            products: productList
         });
-    });
-
-    // Chuyển đổi đối tượng tóm tắt sản phẩm thành mảng
-    const productsArray = Object.values(productSummary);
-
-    // Tính tổng số tiền khách hàng đã chi tiêu
-    const totalSpent = productsArray.reduce((sum, product) => sum + product.totalSpent, 0);
-
-    // Sắp xếp sản phẩm theo tổng tiền (giảm dần)
-    productsArray.sort((a, b) => b.totalSpent - a.totalSpent);
-
-    // Trả về đối tượng khách hàng với tất cả thông tin cần thiết
-    return {
-        id: customer.id,
-        name: customer.name,
-        totalSpent: totalSpent,
-        products: productsArray
-    };
-});
-
-// Sắp xếp khách hàng theo tổng tiền (giảm dần)
+    }
+}
 result.sort((a, b) => b.totalSpent - a.totalSpent);
-
 console.log(JSON.stringify(result, null, 2));
+
