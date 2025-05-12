@@ -70,3 +70,39 @@
         padding-bottom: 30px;
     }
 }
+@media screen and (max-width: 767px) {
+    .how-it-works {
+        padding: 40px 0;
+    }
+    .how-it-works-headline {
+        width: 315px;
+    }
+    .how-it-works-headline h2 {
+        font-size: 28px;
+    }
+    .how-it-works-headline p {
+        font-size: 16px;
+    }
+    .how-it-works-row {
+        width: 315px;
+        flex-direction:column;
+    }
+    .how-it-works-card {
+        width: 315px;
+        flex-direction:row ;
+    }
+    .how-it-works-card img {
+        width: 100px;
+        height: 100px;
+    }
+    .card-details h5 {
+        text-align: start;
+        font-size: 16px;
+        line-height: 140%;
+        margin-bottom: 10px;
+    }
+    .card-details p {
+        text-align: start;
+        font-size: 12px;
+    }
+}

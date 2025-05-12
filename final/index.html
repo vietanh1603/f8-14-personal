@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>NFT Marketplace</title>
-    <link rel="stylesheet" href="./icon-svg/icon-nav.svg" type="image/svg" />
+    <link rel="icon" href="./icon-svg/icon-logo.svg" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,15 +34,17 @@
 <body>
 <!--nav menu-->
 <nav class="navbar">
-    <div class="logo">
-        <img
-                src="icon-svg/icon-logo.svg"
-                alt="icon-logo"
-                width="32"
-                height="32"
-        />
-        <img class="name-logo" src="icon-svg/logo.svg" alt="Website Logo" />
-    </div>
+    <a href="#hero">
+        <div class="logo">
+            <img
+                    src="icon-svg/icon-logo.svg"
+                    alt="icon-logo"
+                    width="32"
+                    height="32"
+            />
+            <img class="name-logo" src="icon-svg/logo.svg" alt="Website Logo" />
+        </div>
+    </a>
     <div class="nav-menu">
         <ul class="nav-list">
             <li>
@@ -68,7 +70,7 @@
     </div>
 </nav>
 <!--Hero Selection-->
-<div class="hero-section">
+<div class="hero-section" id="hero">
     <div class="hero-frame">
         <div class="hero-container">
             <div class="hero-text">
@@ -77,6 +79,19 @@
                     NFT marketplace UI created with Anima for Figma. Collect, buy and
                     sell art from more than 20k NFT artists.
                 </p>
+            </div>
+            <div class="hero-image-2">
+                <div class="hero-image-placeholder">
+                </div>
+                <div class="hero-section-frame">
+                    <h5>Space Walking</h5>
+                    <div class="artist-card">
+                        <div>
+                            <img src="img/img-hero-selection/hero-avatar.png" alt="avatar" />
+                        </div>
+                        <span>Animakid</span>
+                    </div>
+                </div>
             </div>
             <div class="hero-button">
                 <button class="secondary-button secondary-font-size">
@@ -167,7 +182,6 @@
             <div class="trending-card-image">
                 <div class="trending-background-7"></div>
                 <div class="trending-card-element">
-                    <div class=""></div>
                     <div class="background-section-8"></div>
                     <div class="background-section-9"></div>
                     <div class="trending-card-about">
@@ -393,6 +407,12 @@
             </div>
         </div>
     </div>
+    <button class="top-rate-button-2 secondary-button-outline">
+          <span>
+            <img src="icon-svg/rocket2.svg" alt="" />
+          </span>
+        <span class="secondary-font-size">View Rankings</span>
+    </button>
 </div>
 
 <!--Browse Categories-->
@@ -585,6 +605,10 @@
             </div>
         </div>
     </div>
+    <button class="discover-button secondary-button-outline font-size-h2 font-size-16">
+        <img src="icon-svg/seeall.svg" alt="">
+        <span class="secondary-font-size">See All</span>
+    </button>
 </div>
 
 <!--NTF Highlight-->
@@ -597,6 +621,7 @@
                     <span class="font-size-16">Shroomie</span>
                 </div>
                 <h2 class="font-size-h2">Magic Mashrooms</h2>
+                <h2 class="font-size-h2"    >Magic <br> Mashrooms</h2>
                 <button>
                     <img src="icon-svg/seeall.svg" alt="">
                     <span>See All</span>
@@ -621,8 +646,13 @@
                     </div>
                 </div>
             </div>
+            <button class="button-ntf">
+                <img src="icon-svg/seeall.svg" alt="">
+                <span>See All</span>
+            </button>
         </div>
     </div>
+
 </div>
 
 <!--How it works-->
@@ -658,7 +688,9 @@
 <!--widget-->
 <div class="sub-widget">
     <div class="sub-widget-form">
-        <div class="background-sub-widget"></div>
+        <div class="background-sub-widget">
+            <img src="./img/img-sub-widget/Photo.png" alt="">
+        </div>
         <div class="sub-widget-heading">
             <div class="sub-widget-heading-text">
                 <h2 class="font-size-h2">Join our weekly digest</h2>

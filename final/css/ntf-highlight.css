@@ -118,6 +118,9 @@
     gap: 5px;
     flex: 1 0 0;
 }
+.frame-240 h2:nth-child(3){
+    display: none;
+}
 @media screen and (max-width: 991px) {
     .frame-240 {
         min-width: 670px;
@@ -129,8 +132,6 @@
     .frame-240-right {
         width: 295px;
         padding: 30px;
-        justify-content: flex-end;
-        align-items: flex-start;
         gap: 10px;
     }
     .frame-240-right h3 {
@@ -139,5 +140,50 @@
     }
     .frame-240-right h4 {
         font-size: 28px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .ntf-highlight {
+        background: url(../img/img-ntf-highlight/ntf-mobile.png) lightgray 50% / cover no-repeat;
+    }
+    .highlight-info {
+        padding: 120px 0 40px 0;
+    }
+    .frame-240 {
+        width: 315px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .frame-240-left button {
+        display: none;
+    }
+    .frame-240 h2:nth-child(2) {
+        display: none;
+    }
+    .frame-240 h2:nth-child(3){
+        display: block;
+        margin-bottom: 10px;
+    }
+    .button-ntf {
+        display: flex;
+        height: 60px;
+        width: 315px;
+        padding: 22px 50px;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        border-radius: 20px;
+        background: #FFF;
+        border: none;
+        margin-top:30px;
+    }
+    .button-ntf span {
+        color: #2B2B2B;
+        text-align: center;
+        font-family: "Work Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
     }
 }

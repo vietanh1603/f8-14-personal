@@ -1,6 +1,6 @@
 .hero-section {
     display: flex;
-    padding: 80px 195px;
+    padding: 80px;
     justify-content: center;
     align-items: center;
     gap: 30px;
@@ -8,17 +8,15 @@
 }
 .hero-frame {
     display: flex;
-    width: 1050px;
+    max-width: 1050px;
     align-items: flex-start;
     gap: 30px;
 }
 .hero-container {
     display: flex;
-    width: calc((100% - 30px)/2);
+    width: calc((100% - 60px)/2);
     flex-direction: column;
     align-items: flex-start;
-    gap: 30px;
-    flex: 1 0 0;
 }
 .hero-text {
     display: flex;
@@ -30,10 +28,9 @@
 .hero-text h1 {
     display: flex;
     margin-top: 0;
-    width: 510px;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
-    flex: 1 0 0;
     color: #FFF;
     font-family: "Work Sans";
     font-size: 67px;
@@ -53,6 +50,7 @@
     text-transform: capitalize;
 }
 .hero-button button {
+    margin: 15px 0 ;
     border: none;
 }
 .hero-button button span {
@@ -74,7 +72,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    flex: 1 0 0;
 }
 .additional-info h4 {
     color: #FFF;
@@ -101,7 +98,6 @@
     width: calc((100% - 30px)/2);
     flex-direction: column;
     align-items: center;
-    flex: 1 0 0;
     transition: width 0.3s;
     cursor: pointer;
 }
@@ -122,7 +118,6 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    flex-shrink: 0;
     align-self: stretch;
     border-radius: 0px 0px 20px 20px;
     background: #3B3B3B;
@@ -158,6 +153,14 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 22.4px */
+}
+.hero-image-2 {
+    display: none;
+    height: 510px;
+    flex-direction: column;
+    align-items: center;
+    transition: width 0.3s;
+    cursor: pointer;
 }
 /*responsive cho table va mobile*/
 @media only screen and (max-width: 991px) {
@@ -214,40 +217,22 @@
         padding: 40px 0;
         display: flex;
         flex-direction: column;
-        position :relative;
-        height: 700px;
     }
     .hero-frame {
         width: 80%;
         justify-content: center;
         align-items: center;
     }
-    .hero-container {
-        /*position: relative;*/
-    }
     .hero-text h1 {
         font-size: 28px;
         line-height: 140%;
     }
-    .hero-text {
-        position: relative;
-        padding: 40px 0;
-        top: -140px;
-    }
     .hero-text p {
         font-size: 16px;
         line-height: 140%;
-
-    }
-    .hero-image {
-        width:80%;
-        flex-direction: column;
-        position: absolute;
-        left: 10%;
-        top: 220px;
     }
     .hero-section-frame {
-        height: 109px;
+        width:100% ;
         padding: 20px;
     }
     .hero-section-frame h5 {
@@ -257,14 +242,6 @@
     .hero-section-frame p {
         font-size: 16px;
         line-height: 140%;
-    }
-    .hero-button {
-        height: 60px;
-        padding: 0 50px;
-        max-width: 500px;
-        position: relative;
-        top:150px;
-        left:-0%;
     }
     .container-additional h5 {
         font-size: 22px;
@@ -279,9 +256,16 @@
         flex-direction: column;
         gap: 20px;
     }
-    .container-additional {
-        position: relative;
-        top: 150px;
+    .hero-image-2 {
+        display: flex;
+        width: 100%;
+        margin: 10px 0 ;
     }
-
+    .hero-image {
+        display: none;
+    }
+    .hero-button button {
+        height: 50px;
+        width: 315px;
+    }
 }

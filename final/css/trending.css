@@ -1,6 +1,6 @@
 .trending-section {
     display: flex;
-    padding: 80px 0;
+    padding: 80px;
     flex-direction: column;
     align-items: center;
     gap: 60px;
@@ -8,7 +8,7 @@
 }
 .trending-headline {
     display: flex;
-    width: 1046px;
+    width: 1050px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -27,7 +27,6 @@
     font-weight: 600;
     line-height: 120%; /* 45.6px */
     text-transform: capitalize;
-    flex: 1 0 0;
 }
 .headline-subhead {
     display: flex;
@@ -43,7 +42,6 @@
     font-weight: 400;
     line-height: 160%; /* 35.2px */
     text-transform: capitalize;
-    flex: 1 0 0;
 }
 .trending-card-row {
     display: flex;
@@ -55,10 +53,9 @@
     display: flex;
     width: calc((100% - 60px)/3);
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    flex-shrink: 0;
+    align-items: flex-start;;
     border-radius: 20px;
+    gap: 30px;
 }
 .trending-card-image {
     display: flex;
@@ -76,32 +73,29 @@
 .trending-card-element {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
     align-self: stretch;
+    gap: 15px;
 }
 .background-section-2 {
     height: 100px;
-    width: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);;
     border-radius: 20px;
     background: url(../img/trending-img/trending-img2.png) lightgray 50% / cover no-repeat;
 }
 .background-section-3 {
     height: 100px;
-    width: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);
     border-radius: 20px;
     background: url(../img/trending-img/trending-img3.png) lightgray 50% / cover no-repeat;
 }
 .trending-card-about {
-    display: flex;
+    display: flex;;
     height: 100px;
+    width: calc((100% - 40px)/3);
     padding: 32px 15px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
     border-radius: 20px;
     background: #A259FF;
 }
@@ -123,13 +117,15 @@
 }
 .background-section-5 {
     height: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);
+    align-items: flex-start;
     border-radius: 20px;
     background: url(../img/trending-img/trending-img4.png) lightgray 50% / cover no-repeat;
 }
 .background-section-6 {
     height: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);
+    align-items: center;
     border-radius: 20px;
     background: url(../img/trending-img/trending-img6.png) lightgray 50% / cover no-repeat;
 }
@@ -141,13 +137,13 @@
  }
 .background-section-8 {
     height: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);
     border-radius: 20px;
     background: url(../img/trending-img/trending-img8.png) lightgray 50% / cover no-repeat;
 }
 .background-section-9 {
     height: 100px;
-    flex: 1 0 0;
+    width: calc((100% - 40px)/3);
     border-radius: 20px;
     background: url(../img/trending-img/trending-img9.png) lightgray 50% / cover no-repeat;
 }
@@ -180,7 +176,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 140%; /* 22.4px */
-    flex: 1 0 0;
 }
 /*Reponsive cho table va mobile*/
 @media screen and (max-width: 991px) {
