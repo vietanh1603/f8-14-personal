@@ -103,7 +103,7 @@
     border-radius: 20px 20px 0 0;
     background: url(../img/img-category/category8.png) lightgray 50% / cover no-repeat;
 }
-@media screen and (min-width: 768px) and (max-width: 991px) {
+@media screen  and (max-width: 1024px) {
     .browse-categories {
         padding: 40px 0;
         gap: 40px;

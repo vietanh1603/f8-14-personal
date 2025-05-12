@@ -31,7 +31,7 @@
 .how-it-works-card:nth-of-type(2) {
     padding-bottom:52.4px ;
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1024px) {
     .how-it-works {
         padding: 40px 195px;
     }

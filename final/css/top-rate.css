@@ -116,7 +116,7 @@
 .top-rate-button-2 {
     display: none;
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1025px) {
     .top-rate {
         padding: 40px 195px;
     }
