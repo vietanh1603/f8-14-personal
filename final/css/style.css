@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     overscroll-behavior: none;
+    scroll-behavior: smooth;
 }
 
 .primary-background-color {
@@ -158,4 +159,9 @@ a {
 }
 a:hover {
     transform: scale(1.05);
+}
+input {
+    white-space: nowrap;
+    overflow-x: auto;
+    padding: 5px;
 }

@@ -12,6 +12,9 @@
     align-items: flex-end;
     gap: 100px;
 }
+.top-rate-button-2 {
+    display: none;
+}
 .top-rate-head {
     display: flex;
     width: 703px;
@@ -105,10 +108,13 @@
 
 }
 .ranking a {
-    left:8px;
-    top: 4px;
     color: #858584;
-    position: absolute;
+    text-align:center;
+    position: relative;
+    top:4px
+}
+.top-rate-button-2 {
+    display: none;
 }
 @media screen and (max-width: 991px) {
     .top-rate {
@@ -151,9 +157,6 @@
     }
 }
 @media screen and (max-width: 767px) {
-    .top-rate {
-        position :relative;
-    }
     .top-rate-head h2 {
         font-size: 28px;
     }
@@ -169,17 +172,18 @@
     }
     .top-rate {
         display: flex;
-        padding: 40px 195px;
+        padding: 40px 0;
         flex-direction: column;
         align-items: center;
         gap: 40px;
         align-self: stretch;
     }
     .top-rate-section button {
-    height: 50px;
+        display: none;
+    }
+    .top-rate-button-2 {
+        display: flex;
+        height: 50px;
         width: 315px ;
-        position: absolute;
-        top: 1740px;
-        left: 10%;
     }
 }
