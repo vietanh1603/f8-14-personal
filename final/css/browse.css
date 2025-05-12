@@ -150,7 +150,7 @@
 }
 @media screen and (max-width: 767px) {
     .browse-categories {
-        padding: 40px 0;
+        padding: 40px 30px;
     }
     .browse-headline {
         width: 315px;

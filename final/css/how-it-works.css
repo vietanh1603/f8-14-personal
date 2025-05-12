@@ -72,7 +72,7 @@
 }
 @media screen and (max-width: 767px) {
     .how-it-works {
-        padding: 40px 0;
+        padding: 40px 30px;
     }
     .how-it-works-headline {
         width: 315px;

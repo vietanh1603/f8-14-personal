@@ -121,9 +121,13 @@
 .frame-240 h2:nth-child(3){
     display: none;
 }
-@media screen and (max-width: 991px) {
+.button-ntf {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
     .frame-240 {
-        min-width: 670px;
+        width: 670px;
     }
     .frame-240-left h2 {
         font-size: 38px;
@@ -150,7 +154,7 @@
         padding: 120px 0 40px 0;
     }
     .frame-240 {
-        width: 315px;
+        width: 100%;
         flex-direction: column;
         align-items: center;
     }

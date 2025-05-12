@@ -178,7 +178,7 @@
     line-height: 140%; /* 22.4px */
 }
 /*Reponsive cho table va mobile*/
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1024px) {
     .trending-section {
         padding: 40px 0;
     }
@@ -203,6 +203,10 @@
     }
 }
 @media screen and (max-width: 767px) {
+    .trending-section {
+        padding: 40px 30px;
+    }
+
     .trending-headline {
         width: 315px;
     }
