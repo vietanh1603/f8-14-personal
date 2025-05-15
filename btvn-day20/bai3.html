@@ -20,9 +20,13 @@
 </body>
 
 <script>
-    document.getElementById("changeTextBtn").onclick = function() {
-
-    };
+    const button = document.getElementById("changeTextBtn");
+    const textE = document.getElementsByTagName("p");
+    button.addEventListener("click", () => {
+        for (let i = 0; i < textE.length; i++) {
+            textE[i].textContent = `Đã đổi nội dung ${i + 1}`;
+        }
+    })
 </script>
 
 </html>
