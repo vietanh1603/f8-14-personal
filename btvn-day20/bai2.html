@@ -1,26 +1,40 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-<button id="changeTextBtn">Đổi nội dung tất cả P</button>
-<p>Đoạn 1</p>
-<p>Đoạn 2</p>
-<p>Đoạn 3</p>
-
-// Kết quả đầu ra
-<!--<p>Đã đổi nội dung  1</p>-->
-<!--<p>Đã đổi nội dung 2</p>-->
-<!--<p>Đã đổi nội dung3</p>-->
+<div>Div 1</div>
+<div>Div 2</div>
+<p>P 1</p>
+<section>
+    Section 1
+    <p>P 2</p>
+    <div>Div 3</div>
+</section>
 </body>
 
 <script>
+const countElementsByTag = (tagName) => {
+    if (typeof (tagName) !== 'string') {
+        return 0;
+    }
+    return document.getElementsByTagName(tagName).length;
+}
+console.log(countElementsByTag("div"));
 
 </script>
 
 </html>
+
+
+
+
+// Code debug
+console.log(countElementsByTag("div")); // 3
+console.log(countElementsByTag("p")); // 2
+console.log(countElementsByTag("section")); // 1
+console.log(countElementsByTag("header")); // 0
+console.log(countElementsByTag(123)); // 0
+
