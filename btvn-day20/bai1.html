@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<table width="100%" border="1" cellspacing="0">
+    <thead>
+    <tr></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</body>
+<script>
+    const data = [
+        { id: 1, name: 'Nguyễn Văn A', age: 22, email: 'a@example.com' },
+        { id: 2, name: 'Trần Thị B', age: 21, email: 'b@example.com' },
+        { id: 3, name: 'Lê Văn C', age: 23, email: 'c@example.com' }
+    ];
+
+    const header = [
+        'id', 'name', 'age', 'email', 'address'
+    ]
+    const positions = [
+        { id: 1, position: 'Giám đốc' },
+        { id: 2, position: 'Nhân viên' },
+        { id: 3, position: 'Quản lý' }
+    ];
+const dataPosition = data.map(data => {
+    const position = positions.find(position => (position.id === data.id));
+    return { ...data, position: position.position };
+})
+
+const createHeaderTable = document.querySelector('table thead tr');
+// tao header
+    header.forEach(header => {
+        createHeaderTable.innerHTML += `<th>${header}</th>`;
+    })
+
+// tao body
+const createBodyTable = document.querySelector('table tbody');
+    dataPosition.forEach(position => {
+        createBodyTable.innerHTML += `
+        <tr>
+        <td>${position.id}</td>
+        <td>${position.name}</td>
+        <td>${position.age}</td>
+        <td>${position.email}</td>
+        <td>${position.position}</td>
+        `
+    })
+
+
+
+
+
+</script>
+</html>
