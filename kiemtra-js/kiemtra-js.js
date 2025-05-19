@@ -58,17 +58,18 @@ const orders = [
 
 
 //---------------------- bai 4 ---------------------
-// const listOrders = []
-// for (const product of products) {
-//     for (const order of orders) {
-//         if (product.id === order.productId) {
-//         listOrders.push({ id: product.id,
-//             name: product.name,
-//             productId: order.productId,
-//             quantity: order.quantity,});
-//         }
-//     }
-// }
+const listOrders = []
+for (const product of products) {
+    for (const order of orders) {
+        if (product.id === order.productId) {
+        listOrders.push({ id: product.id,
+            name: product.name,
+            productId: order.productId,
+            quantity: order.quantity,});
+        }
+    }
+}
+console.log(listOrders);
 // let maxQuantity = 0;
 // orders.forEach((order) => {
 //     if (order.quantity > maxQuantity) {
@@ -80,18 +81,18 @@ const orders = [
 
 
 // --------------bai 6 ----------------------
-const employOder = [] ;
-for (const employee of employees) {
-    for (const order of orders) {
-        if (employee.id === order.employeeId) {}
-        employOder.push({
-            id: employee.id,
-            name: employee.name,
-            quantity: order.quantity,
-        })
-    }
-}
-console.log(employOder);
+// const employOder = [] ;
+// for (const employee of employees) {
+//     for (const order of orders) {
+//         if (employee.id === order.employeeId) {}
+//         employOder.push({
+//             id: employee.id,
+//             name: employee.name,
+//             quantity: order.quantity,
+//         })
+//     }
+// }
+// console.log(employOder);
 
 
 

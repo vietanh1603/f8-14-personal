@@ -186,7 +186,19 @@ console.log(bai3);
 
 
 
+// cach 2
 
+const arrb3 = [132,34,6435,24,64,234,543];
+for (let i = 0; i < arrb3.length; i++) {
+const curValue = arrb3[i];
+const nextValue = arrb3[i + 1];
+
+if(curValue > nextValue) {
+    arr[i] = nextValue;
+    arr[i + 1] = curValue;
+    }
+}
+console.log(arrb3);
 
 
 

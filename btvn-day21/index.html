@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="
+    https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
+    " rel="stylesheet">
+    <link href="dialog.css" rel="stylesheet"/>
+    <link href="common.css" rel="stylesheet"/>
+</head>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 550px;
+        margin:20px 0;
+        font-size: 18px;
+    }
+    tr {
+        width:100%
+    }
+    thead tr  {
+        font-size: 18px;
+    }
+    tbody {
+        text-align: center;
+    }
+    tr {
+        border-bottom:1px solid #dfdada;
+        padding : 15px;
+    }
+    tbody td:nth-child(4) {
+        text-align: right;
+    }
+    .search-bar {
+        width: 550px;
+        display: flex;
+        gap:20px
+    }
+    .search-bar input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+    .search-bar button {
+        width: 20%;
+        background-color: green;
+        color: white;
+        font-weight: 600;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+    }
+    span:nth-child(1)   {
+        color: green;
+    }
+    span:nth-child(2)   {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="search-bar">
+            <input placeholder="search employees" name="search"/>
+            <button onclick="onOpenDialog()">Add new</button>
+        </div>
+        <table cellspacing="0" >
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+    const headers = [
+        { name: 'id', text: 'Id', align: 'center' },
+        { name: 'name', text: 'Ten' },
+        { name: 'address', text: 'Dia Chi' },
+        { name: 'age', text: 'Tuoi', align: 'right' },
+        { name: 'action', text: 'Action', align: 'center' },
+    ]
+
+    const employees = [
+        {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27, searchStr: 'Tran Pham Tin|Hoai Duc - Ha Noi|27'},
+        {id: 2, name: 'Pham Nguyen Bac', address: 'Co Nhue - Ha Noi', age: 27, searchStr: 'Pham Nguyen Bac|Co Nhue - Ha Noi|27'},
+        {id: 3, name: 'Nguyen Nam Tao', address: 'Soc Son - Ha Noi', age: 27, searchStr: 'Nguyen Nam Tao|Soc Son - Ha Noi|27'},
+    ]
+    const headerTable  = document.querySelector('table thead tr');
+    //tao header
+    headers.forEach(header => {
+        headerTable.innerHTML += `<th>${header.text}</th>`;
+    })
+    //tao body
+    const bodyTable = document.querySelector('table tbody');
+    employees.forEach(employee => {
+        bodyTable.innerHTML += ``
+    })
+    //tao nut edit and delete
+    employees.forEach(employee => {
+        const row = document.createElement('tr');
+        headers.forEach(header => {
+            const cell = document.createElement('td');
+            if(header.name === 'action'){
+                const editBtn = document.createElement('span');
+                const deleteBtn = document.createElement('span');
+
+                // them attribute cho nut edit and delete
+                editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn');
+                deleteBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn');
+                cell.appendChild(editBtn)
+                cell.appendChild(deleteBtn)
+            }
+            else {
+                cell.innerText = employee[header.name]
+            }
+
+            if (header.align) cell.setAttribute('class', `text-align-${header.align}`)
+            row.append(cell)
+        })
+        bodyTable.append(row)
+    })
+
+    </script>
+</body>

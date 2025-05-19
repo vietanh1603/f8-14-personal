@@ -33,7 +33,7 @@
                                    └───────────────────────────────────┘
  */
 
-const a= 13
+const a= 1000
 let b= 0
 if (a <= 1) {
     b = a*15.000 }
@@ -42,7 +42,7 @@ else if (1< a <=5) {
 else {
     b = 15.000 + 4*13.500+ (a - 5)*11.000
 }
-// so tien khuyen mai
+// tong so tien khuyen mai
 if (a > 120) {
     b = b * 0.9
 }
@@ -79,7 +79,7 @@ console.log('tong tien la', b)
  */
 
 let s= 0 ;
-const n= 11 ;
+const n= 1 ;
 for (let i = 1; i < n; ++i) {
     s = s + i*(i+1)
     console.log('tong cua bieu thuc la s = ', s)
