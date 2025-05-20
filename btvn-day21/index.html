@@ -11,14 +11,20 @@
 </head>
 
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        width: 600px;
+        margin: 20px auto;
+    }
     table {
         border-collapse: collapse;
-        width: 550px;
+        width: 100%;
         margin:20px 0;
         font-size: 18px;
-    }
-    tr {
-        width:100%
     }
     thead tr  {
         font-size: 18px;
@@ -30,11 +36,14 @@
         border-bottom:1px solid #dfdada;
         padding : 15px;
     }
+    td {
+        padding: 10px;
+    }
     tbody td:nth-child(4) {
         text-align: right;
     }
     .search-bar {
-        width: 550px;
+        width: 100%;
         display: flex;
         gap:20px
     }
@@ -42,6 +51,7 @@
         width: 100%;
         font-size: 16px;
         padding: 10px;
+        outline: none;
     }
     .search-bar button {
         width: 20%;
@@ -57,6 +67,62 @@
     }
     span:nth-child(2)   {
         color: red;
+    }
+    .dialog-container {
+        display: none;
+    }
+    .dialog-container .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        inset: 0;
+        display: flex;
+    }
+    .dialog {
+        width: 400px;
+        /*height: 400px;*/
+        display: flex;
+        flex-direction: column;
+        margin:auto;
+        background: white;
+        border-radius: 5px;
+    }
+    .dialog-title {
+        text-align: center;
+        padding: 10px;
+        font-size: 22px;
+    }
+    .dialog input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .dialog-input {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap:12px
+    }
+    .dialog-button {
+        display: flex;
+        gap:10px;
+        padding: 10px;
+    }
+    .dialog-button button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        flex: 1 ;
+    }
+    .cancel-btn {
+        background-color: red;
+    }
+    .save-btn {
+        background-color: green;
+    }
+    button {
+        cursor: pointer;
+
     }
 </style>
 
@@ -75,6 +141,22 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+    <div class="dialog-container">
+        <div class="overlay">
+            <div class="dialog">
+                <div class="dialog-title">Create Employee</div>
+                <div class="dialog-input">
+                    <input type="text" placeholder='name'/>
+                    <input type="text" placeholder='address'/>
+                    <input type="text" placeholder='age'>
+                </div>
+                <div class="dialog-button">
+                    <button class="cancel-btn">Cancel</button>
+                    <button class="save-btn">Save</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
     const headers = [
