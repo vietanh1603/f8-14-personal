@@ -2,210 +2,221 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="
-    https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css
-    " rel="stylesheet">
-    <link href="dialog.css" rel="stylesheet"/>
-    <link href="common.css" rel="stylesheet"/>
+    <title>Danh sách nhân viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 600px;
+            margin: 20px auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin:20px 0;
+            font-size: 18px;
+        }
+        thead tr  {
+            font-size: 18px;
+        }
+        tbody {
+            text-align: center;
+        }
+        tr {
+            border-bottom:1px solid #dfdada;
+            padding : 15px;
+        }
+        td {
+            padding: 10px;
+        }
+        tbody td:nth-child(4) {
+            text-align: right;
+        }
+        .text-align-center {
+            text-align: center;
+        }
+        .text-align-right {
+            text-align: right;
+        }
+        .search-bar {
+            width: 100%;
+            display: flex;
+            gap:20px
+        }
+        .search-bar input {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            outline: none;
+        }
+        .search-bar button {
+            width: 20%;
+            background-color: green;
+            color: white;
+            font-weight: 600;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+        }
+        span:nth-child(1) {
+            color: green;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        span:nth-child(2) {
+            color: red;
+            cursor: pointer;
+        }
+        .dialog-container {
+            display: none;
+        }
+        .dialog-container .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            inset: 0;
+            display: flex;
+        }
+        .dialog {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            margin:auto;
+            background: white;
+            border-radius: 5px;
+        }
+        .dialog-title {
+            text-align: center;
+            padding: 10px;
+            font-size: 22px;
+        }
+        .dialog-input {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap:12px
+        }
+        .dialog-input input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .dialog-button {
+            display: flex;
+            gap:10px;
+            padding: 10px;
+        }
+        .dialog-button button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            flex: 1 ;
+        }
+        .cancel-btn {
+            background-color: red;
+        }
+        .save-btn {
+            background-color: green;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    .container {
-        width: 600px;
-        margin: 20px auto;
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        margin:20px 0;
-        font-size: 18px;
-    }
-    thead tr  {
-        font-size: 18px;
-    }
-    tbody {
-        text-align: center;
-    }
-    tr {
-        border-bottom:1px solid #dfdada;
-        padding : 15px;
-    }
-    td {
-        padding: 10px;
-    }
-    tbody td:nth-child(4) {
-        text-align: right;
-    }
-    .search-bar {
-        width: 100%;
-        display: flex;
-        gap:20px
-    }
-    .search-bar input {
-        width: 100%;
-        font-size: 16px;
-        padding: 10px;
-        outline: none;
-    }
-    .search-bar button {
-        width: 20%;
-        background-color: green;
-        color: white;
-        font-weight: 600;
-        outline: none;
-        border: none;
-        border-radius: 5px;
-    }
-    span:nth-child(1)   {
-        color: green;
-    }
-    span:nth-child(2)   {
-        color: red;
-    }
-    .dialog-container {
-        display: none;
-    }
-    .dialog-container .overlay {
-        background-color: rgba(0, 0, 0, 0.5);
-        position: fixed;
-        inset: 0;
-        display: flex;
-    }
-    .dialog {
-        width: 400px;
-        /*height: 400px;*/
-        display: flex;
-        flex-direction: column;
-        margin:auto;
-        background: white;
-        border-radius: 5px;
-    }
-    .dialog-title {
-        text-align: center;
-        padding: 10px;
-        font-size: 22px;
-    }
-    .dialog input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-    }
-    .dialog-input {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        gap:12px
-    }
-    .dialog-button {
-        display: flex;
-        gap:10px;
-        padding: 10px;
-    }
-    .dialog-button button {
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        color: white;
-        flex: 1 ;
-    }
-    .cancel-btn {
-        background-color: red;
-    }
-    .save-btn {
-        background-color: green;
-    }
-    button {
-        cursor: pointer;
-
-    }
-</style>
-
 <body>
-    <div class="container">
-        <div class="search-bar">
-            <input placeholder="search employees" name="search"/>
-            <button onclick="onOpenDialog()">Add new</button>
-        </div>
-        <table cellspacing="0" >
-            <thead>
-            <tr>
-            </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="search-bar">
+        <input placeholder="search employees" name="search" oninput="renderEmployees(this.value)"/>
+        <button onclick="onOpenDialog()">Add new</button>
     </div>
-    <div class="dialog-container">
-        <div class="overlay">
-            <div class="dialog">
-                <div class="dialog-title">Create Employee</div>
-                <div class="dialog-input">
-                    <input type="text" placeholder='name'/>
-                    <input type="text" placeholder='address'/>
-                    <input type="text" placeholder='age'>
-                </div>
-                <div class="dialog-button">
-                    <button class="cancel-btn">Cancel</button>
-                    <button class="save-btn">Save</button>
-                </div>
+    <table>
+        <thead>
+        <tr></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<div class="dialog-container" id="dialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="dialog-title">Create Employee</div>
+            <div class="dialog-input">
+                <input type="text" placeholder='name' name="name"/>
+                <input type="text" placeholder='address' name="address"/>
+                <input type="text" placeholder='age' name="age"/>
+            </div>
+            <div class="dialog-button">
+                <button class="cancel-btn" onclick="onCloseDialog()">Cancel</button>
+                <button class="save-btn" onclick="onSaveDialog()">Save</button>
             </div>
         </div>
     </div>
-    <script>
+</div>
+
+<script>
     const headers = [
-        { name: 'id', text: 'Id', align: 'center' },
-        { name: 'name', text: 'Ten' },
-        { name: 'address', text: 'Dia Chi' },
-        { name: 'age', text: 'Tuoi', align: 'right' },
-        { name: 'action', text: 'Action', align: 'center' },
-    ]
+        { name: 'id', text: 'ID', align: 'center' },
+        { name: 'name', text: 'Tên' },
+        { name: 'address', text: 'Địa chỉ' },
+        { name: 'age', text: 'Tuổi', align: 'right' },
+        { name: 'action', text: 'Thao tác', align: 'center' },
+    ];
 
-    const employees = [
-        {id: 1, name: 'Tran Pham Tin', address: 'Hoai Duc - Ha Noi', age: 27, searchStr: 'Tran Pham Tin|Hoai Duc - Ha Noi|27'},
-        {id: 2, name: 'Pham Nguyen Bac', address: 'Co Nhue - Ha Noi', age: 27, searchStr: 'Pham Nguyen Bac|Co Nhue - Ha Noi|27'},
-        {id: 3, name: 'Nguyen Nam Tao', address: 'Soc Son - Ha Noi', age: 27, searchStr: 'Nguyen Nam Tao|Soc Son - Ha Noi|27'},
-    ]
-    const headerTable  = document.querySelector('table thead tr');
-    //tao header
+    let employees = [
+        { id: 1, name: 'Trần Phạm Tín', address: 'Hoài Đức - Hà Nội', age: 27 },
+        { id: 2, name: 'Phạm Nguyễn Bắc', address: 'Cổ Nhuế - Hà Nội', age: 27 },
+        { id: 3, name: 'Nguyễn Nam Tào', address: 'Sóc Sơn - Hà Nội', age: 27 },
+    ];
+
+    const dialogContainerE = document.getElementById('dialogContainer');
+    const tableHead = document.querySelector('table thead tr');
+    const tableBody = document.querySelector('table tbody');
+
+    // Render header
     headers.forEach(header => {
-        headerTable.innerHTML += `<th>${header.text}</th>`;
-    })
-    //tao body
-    const bodyTable = document.querySelector('table tbody');
-    employees.forEach(employee => {
-        bodyTable.innerHTML += ``
-    })
-    //tao nut edit and delete
-    employees.forEach(employee => {
-        const row = document.createElement('tr');
-        headers.forEach(header => {
-            const cell = document.createElement('td');
-            if(header.name === 'action'){
-                const editBtn = document.createElement('span');
-                const deleteBtn = document.createElement('span');
+        tableHead.innerHTML += `<th>${header.text}</th>`;
+    });
 
-                // them attribute cho nut edit and delete
-                editBtn.setAttribute('class', 'mdi mdi-pencil-outline edit-btn');
-                deleteBtn.setAttribute('class', 'mdi mdi-trash-can-outline del-btn');
-                cell.appendChild(editBtn)
-                cell.appendChild(deleteBtn)
-            }
-            else {
-                cell.innerText = employee[header.name]
-            }
+    // Hàm render danh sách nhân viên
+    function renderEmployees(keyword = '') {
+        const lowerKeyword = keyword.toLowerCase();
+        tableBody.innerHTML = '';
 
-            if (header.align) cell.setAttribute('class', `text-align-${header.align}`)
-            row.append(cell)
-        })
-        bodyTable.append(row)
-    })
+        const filtered = employees.filter(emp =>
+            `${emp.name} ${emp.address} ${emp.age}`.toLowerCase().includes(lowerKeyword)
+        );
 
-    </script>
+        filtered.forEach(employee => {
+            const row = document.createElement('tr');
+            headers.forEach(header => {
+                const cell = document.createElement('td');
+                if (header.name === 'action') {
+                    const editBtn = document.createElement('span');
+                    const deleteBtn = document.createElement('span');
+                    editBtn.className = 'mdi mdi-pencil-outline';
+                    deleteBtn.className = 'mdi mdi-trash-can-outline';
+                    cell.appendChild(editBtn);
+                    cell.appendChild(deleteBtn);
+                } else {
+                    cell.innerText = employee[header.name];
+                }
+                if (header.align) {
+                    cell.classList.add(`text-align-${header.align}`);
+                }
+                row.appendChild(cell);
+            });
+            tableBody.appendChild(row);
+        });
+    }
+
+
+    // Gọi lần đầu để hiển thị danh sách
+    renderEmployees();
+</script>
 </body>
+</html>

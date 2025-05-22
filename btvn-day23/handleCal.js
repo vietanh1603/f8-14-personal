@@ -1,19 +1,74 @@
 import { updateDisplay } from './updateDisplay.js';
 
-let currentE = '';
+let inputE = '';
+
+// clear man hinh
+const clearScreen = () => {
+    inputE = '';
+    updateDisplay(inputE);
+}
+
+const appendNumber = (number) => {
+    inputE += number;
+    updateDisplay(inputE);
+}
+
+// phep cong
+const add = () => {
+    inputE += '+';
+    updateDisplay(inputE);
+}
+
+// phep tru
+const subtract = () => {
+    inputE += '-';
+    updateDisplay(inputE);
+}
+
+// phep nhan
+const multiply = () => {
+    inputE += '*';
+    updateDisplay(inputE);
+}
+
+// phep chia
+const divide = () => {
+    inputE += '/';
+    updateDisplay(inputE);
+}
+
+// Tính toán kết quả
+const calculate = () => {
+    let result = eval(inputE);
+        // inputE = result;
+    updateDisplay(result);
+    console.log('input',result);
+}
 
 const onclickBtn = (value) => {
-    if (value === 'del') {
-        currentE = '';
+    switch (value) {
+        case 'del':
+            clearScreen();
+            break;
+        case '=':
+            calculate();
+            break;
+        case '+':
+            add();
+            break;
+        case '-':
+            subtract();
+            break;
+        case '*':
+            multiply();
+            break;
+        case '/':
+            divide();
+            break;
+        default:
+            appendNumber(value);
     }
-    else if (value === '=') {
-        const result = eval(currentE);
-        currentE = result;
-    }
-    else {
-        currentE += value;
-    }
-    updateDisplay(currentE);
 }
+
 
 export { onclickBtn };

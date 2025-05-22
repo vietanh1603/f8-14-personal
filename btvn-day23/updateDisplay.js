@@ -1,4 +1,4 @@
-function updateDisplay(value) {
+const updateDisplay = (value) => {
     const resultE = document.querySelector('.result');
     resultE.innerText = value;
     console.log(resultE);
