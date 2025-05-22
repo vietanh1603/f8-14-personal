@@ -37,7 +37,7 @@ const divide = () => {
     updateDisplay(inputE);
 }
 
-// Tính toán kết quả
+// ket qua
 const calculate = () => {
     let result = eval(inputE);
         // inputE = result;
