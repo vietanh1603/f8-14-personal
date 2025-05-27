@@ -4,128 +4,7 @@
     <meta charset="UTF-8">
     <title>Danh sách nhân viên</title>
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .container {
-            width: 600px;
-            margin: 20px auto;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin:20px 0;
-            font-size: 18px;
-        }
-        thead tr  {
-            font-size: 18px;
-        }
-        tbody {
-            text-align: center;
-        }
-        tr {
-            border-bottom:1px solid #dfdada;
-            padding : 15px;
-        }
-        td {
-            padding: 10px;
-        }
-        tbody td:nth-child(4) {
-            text-align: right;
-        }
-        .text-align-center {
-            text-align: center;
-        }
-        .text-align-right {
-            text-align: right;
-        }
-        .search-bar {
-            width: 100%;
-            display: flex;
-            gap:20px
-        }
-        .search-bar input {
-            width: 100%;
-            font-size: 16px;
-            padding: 10px;
-            outline: none;
-        }
-        .search-bar button {
-            width: 20%;
-            background-color: green;
-            color: white;
-            font-weight: 600;
-            outline: none;
-            border: none;
-            border-radius: 5px;
-        }
-        span:nth-child(1) {
-            color: green;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-        span:nth-child(2) {
-            color: red;
-            cursor: pointer;
-        }
-        .dialog-container {
-            display: none;
-        }
-        .dialog-container .overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            position: fixed;
-            inset: 0;
-            display: flex;
-        }
-        .dialog {
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            margin:auto;
-            background: white;
-            border-radius: 5px;
-        }
-        .dialog-title {
-            text-align: center;
-            padding: 10px;
-            font-size: 22px;
-        }
-        .dialog-input {
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            gap:12px
-        }
-        .dialog-input input {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .dialog-button {
-            display: flex;
-            gap:10px;
-            padding: 10px;
-        }
-        .dialog-button button {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            flex: 1 ;
-        }
-        .cancel-btn {
-            background-color: red;
-        }
-        .save-btn {
-            background-color: green;
-        }
-        button {
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container">
@@ -144,11 +23,11 @@
 <div class="dialog-container" id="dialogContainer">
     <div class="overlay">
         <div class="dialog">
-            <div class="dialog-title">Create Employee</div>
+            <div class="dialog-title">Add Employee</div>
             <div class="dialog-input">
                 <input type="text" placeholder='name' name="name"/>
                 <input type="text" placeholder='address' name="address"/>
-                <input type="text" placeholder='age' name="age"/>
+                <input type="number" placeholder='age' name="age"/>
             </div>
             <div class="dialog-button">
                 <button class="cancel-btn" onclick="onCloseDialog()">Cancel</button>
@@ -157,7 +36,37 @@
         </div>
     </div>
 </div>
-
+<div class="edit-dialog-container" id="editDialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="dialog-title">Edit Employee</div>
+            <div class="dialog-input">
+                <input type="hidden" name="id"/>
+                <input type="text" placeholder='name' name="name"/>
+                <input type="text" placeholder='address' name="address"/>
+                <input type="number" placeholder='age' name="age"/>
+            </div>
+            <div class="dialog-button">
+                <button class="cancel-btn" onclick="onCloseEditDialog()">Cancel</button>
+                <button class="edit-btn" onclick="onEditSave()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="del-dialog-container" id="delDialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="title">Delete employee</div>
+            <div class="title">Are you sure?</div>
+            <div>
+                <div class="dialog-button">
+                    <button class="cancel-btn" onclick="onCloseDeleteDialog()">Cancel</button>
+                    <button class="save-btn" onclick="onDeleteEmployee()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     const headers = [
         { name: 'id', text: 'ID', align: 'center' },
@@ -173,9 +82,12 @@
         { id: 3, name: 'Nguyễn Nam Tào', address: 'Sóc Sơn - Hà Nội', age: 27 },
     ];
 
-    const dialogContainerE = document.getElementById('dialogContainer');
+    const dialogContainer = document.getElementById('dialogContainer');
+    const editDialogContainer = document.getElementById('editDialogContainer');
+    const delDialogContainer = document.getElementById('delDialogContainer');
     const tableHead = document.querySelector('table thead tr');
     const tableBody = document.querySelector('table tbody');
+    let selectedEmployeeId = null;
 
     // Render header
     headers.forEach(header => {
@@ -191,20 +103,31 @@
             `${emp.name} ${emp.address} ${emp.age}`.toLowerCase().includes(lowerKeyword)
         );
 
-        filtered.forEach(employee => {
+        filtered.forEach((employee, index) => {
             const row = document.createElement('tr');
             headers.forEach(header => {
                 const cell = document.createElement('td');
                 if (header.name === 'action') {
                     const editBtn = document.createElement('span');
                     const deleteBtn = document.createElement('span');
+
                     editBtn.className = 'mdi mdi-pencil-outline';
                     deleteBtn.className = 'mdi mdi-trash-can-outline';
+
+                    editBtn.addEventListener('click', () => {
+                        onOpenEditDialog(employee);
+                    });
+
+                    deleteBtn.addEventListener('click', () => {
+                        onOpenDeleteDialog(employee.id);
+                    });
+
                     cell.appendChild(editBtn);
                     cell.appendChild(deleteBtn);
                 } else {
                     cell.innerText = employee[header.name];
                 }
+
                 if (header.align) {
                     cell.classList.add(`text-align-${header.align}`);
                 }
@@ -214,6 +137,80 @@
         });
     }
 
+    // click vao add new de them moi
+    const onOpenDialog = () => {
+        dialogContainer.style.display = 'block';
+    }
+    // click vao cancel de dong dialog
+    const onCloseDialog = () => {
+        dialogContainer.style.display = 'none';
+    }
+    // click vao icon edit de hien edit-dialog
+    const onOpenEditDialog = (employee) => {
+        document.querySelector('#editDialogContainer input[name="id"]').value = employee.id;
+        document.querySelector('#editDialogContainer input[name="name"]').value = employee.name;
+        document.querySelector('#editDialogContainer input[name="address"]').value = employee.address;
+        document.querySelector('#editDialogContainer input[name="age"]').value = employee.age;
+
+        editDialogContainer.style.display = 'block';
+    }
+     // click vao cancel de dong dialog
+    const onCloseEditDialog = () => {
+        editDialogContainer.style.display = 'none';
+    }
+    // click vao icon del de hien del-dialog
+    const onOpenDeleteDialog = (id) => {
+        selectedEmployeeId = id;
+        delDialogContainer.style.display = 'block';
+    }
+    // click vao cancel de dong dialog
+    const onCloseDeleteDialog = () => {
+        delDialogContainer.style.display = 'none';
+    }
+
+    // luu nhan vien moi
+    const onSaveDialog = () => {
+        // tao id moi
+        const newId = employees.length ? employees[employees.length - 1].id + 1 : 1;
+
+        const employee = {
+            id: newId,
+            name: document.querySelector('#dialogContainer input[name="name"]').value,
+            address: document.querySelector('#dialogContainer input[name="address"]').value,
+            age: document.querySelector('#dialogContainer input[name="age"]').value,
+        };
+        // them nhan vien moi vao danh sach
+        employees.push(employee);
+        onCloseDialog();
+        renderEmployees();
+    }
+    // chinh sua thong tin nhan vien
+    const onEditSave = () => {
+        const id = parseInt(document.querySelector('#editDialogContainer input[name="id"]').value);
+        const name = document.querySelector('#editDialogContainer input[name="name"]').value;
+        const address = document.querySelector('#editDialogContainer input[name="address"]').value;
+        const age = document.querySelector('#editDialogContainer input[name="age"]').value;
+
+        const index = employees.findIndex(emp => emp.id === id);
+
+        if (index !== -1) {
+            employees[index] = {
+                id: id,
+                name: name,
+                address: address,
+                age: age
+            };
+
+            onCloseEditDialog();
+            renderEmployees();
+        }
+    }
+    // xoa nhan vien
+    const onDeleteEmployee = () => {
+        employees = employees.filter(emp => emp.id !== selectedEmployeeId);
+        onCloseDeleteDialog();
+        renderEmployees();
+    }
 
     // Gọi lần đầu để hiển thị danh sách
     renderEmployees();

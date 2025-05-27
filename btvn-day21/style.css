@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 600px;
+    margin: 20px auto;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin:20px 0;
+    font-size: 18px;
+}
+thead tr  {
+    font-size: 18px;
+}
+tbody {
+    text-align: center;
+}
+tr {
+    border-bottom:1px solid #dfdada;
+    padding : 15px;
+}
+td {
+    padding: 10px;
+}
+tbody td:nth-child(4) {
+    text-align: right;
+}
+.text-align-center {
+    text-align: center;
+}
+.text-align-right {
+    text-align: right;
+}
+.search-bar {
+    width: 100%;
+    display: flex;
+    gap:20px
+}
+.search-bar input {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+}
+.search-bar button {
+    width: 20%;
+    background-color: green;
+    color: white;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+span:nth-child(1) {
+    color: green;
+    cursor: pointer;
+    margin-right: 10px;
+}
+span:nth-child(2) {
+    color: red;
+    cursor: pointer;
+}
+.dialog-container, .edit-dialog-container, .del-dialog-container {
+    display: none;
+}
+.edit-dialog-container .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    display: flex;
+    position: fixed;
+}
+.del-dialog-container .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    inset: 0;
+    display: flex;
+    position: fixed;
+}
+.dialog-container .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    inset: 0;
+    display: flex;
+}
+.dialog {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    background: white;
+    border-radius: 5px;
+}
+.dialog-title, .title {
+    text-align: center;
+    padding: 10px;
+    font-size: 22px;
+}
+.dialog-input {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap:12px
+}
+.dialog-input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+.dialog-button {
+    display: flex;
+    gap:10px;
+    padding: 10px;
+}
+.dialog-button button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    flex: 1 ;
+}
+.cancel-btn {
+    background-color: red;
+}
+.save-btn,
+.edit-btn {
+    background-color: green;
+}
+button {
+    cursor: pointer;
+}
