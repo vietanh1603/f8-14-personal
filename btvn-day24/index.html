@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    #app {
+        display: flex;
+        gap:50px ;
+    }
+    .question-container {
+        width: 70%;
+
+    }
+    .question-title {
+        border: 1px solid #ccc;
+        padding: 32px;
+    }
+    .question-option {
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    .check-btn {
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    .check-btn:active {
+        background-color: #9ec2bb;
+        user-select: none;
+    }
+    .time-container {
+        height: 50px;
+        width: 50px;
+        border: 1px solid #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 15px;
+        border-radius: 50%;
+    }
+    .bonus {
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 15px;
+        border-radius: 5px;
+        line-height: 120%;
+    }
+    .bonus span {
+        padding: 0 5px;
+        margin-top: 5px;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+</style>
+
+<body>
+<div id="app">
+    <div class="question-container">
+        <div class="question">
+            <div class="question-title">How are you</div>
+            <div class="question-option" value="a">A: OK</div>
+            <div class="question-option" value="b">B: hmm</div>
+            <div class="question-option" value="c">C: good</div>
+            <div class="question-option" value="d">D: i'm bang</div>
+        </div>
+
+        <div class="check-btn">Check</div>
+
+        <div class ="time-container">
+            <div id="time">30</div>
+        </div>
+    </div>
+    <div class="bonus">
+        <span>$1.000.000</span>
+        <span>$500.000</span>
+        <span>$250.000</span>
+        <span>$125.000</span>
+        <span>$64.000</span>
+        <span>$32.000</span>
+        <span>$16.000</span>
+        <span>$8.000</span>
+        <span>$4.000</span>
+        <span>$2,000</span>
+        <span>$1.000</span>
+        <span>$500</span>
+        <span>$300</span>
+        <span>$200</span>
+        <span>$100</span>
+    </div>
+</div>
+<script src="const.js" type="module"></script>
+<script src="referabces.js" type="module"></script>
+<script src="render.js" type="module"></script>
+</body>

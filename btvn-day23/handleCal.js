@@ -40,7 +40,8 @@ const divide = () => {
 // ket qua
 const calculate = () => {
     let result = eval(inputE);
-        // inputE = result;
+
+        inputE = result.toString();
     updateDisplay(result);
     console.log('input',result);
 }
