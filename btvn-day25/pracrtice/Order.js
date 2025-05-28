@@ -50,6 +50,7 @@ export class Order {
     calculateTotal() {
         return this.#products.reduce((total, product) => total + product.getPrice(), 0);
     }
+
 // ghi de phuong thuc
     toString() {
         return `Đơn hàng #${this.#id}, khách hàng: ${this.#customer.getName()}, ngày đặt: ${this.#orderDate.toLocaleDateString('vi-VN')}`;

@@ -6,4 +6,5 @@ export const findHighestValueOrder = (orders) => {
         const highestTotal = highest.calculateTotal();
         return currentTotal > highestTotal ? order : highest;
     }, orders[0]);
+
 }

@@ -11,6 +11,7 @@ export  class Product extends Base {
     getPrice() {
         return this.#price;
     }
+
 // sua gia
     setPrice(price) {
         this.#price = price;

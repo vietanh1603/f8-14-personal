@@ -11,6 +11,7 @@ const customer3 = new Customer(3, "Lê Hoàng Cường", "lecuong@example.com", 
 
 const customers = [customer1, customer2, customer3];
 
+
 // Tạo sản phẩm
 const product1 = new Product(1, "Laptop Dell XPS", 25000000);
 const product2 = new Product(2, "Điện thoại Samsung Galaxy", 12000000);

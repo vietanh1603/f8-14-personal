@@ -32,6 +32,7 @@ export const listOrdersByCustomer = (customers, orders) => {
     return ordersByCustomer;
 };
 
+
 export const displayOrdersByCustomer = (ordersByCustomer) => {
     const allCustomers = Object.values(ordersByCustomer);
 
