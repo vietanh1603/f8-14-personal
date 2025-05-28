@@ -6,6 +6,7 @@ export class Base {
     this.#id = id;
     this.#name = name;
   }
+
 // lay id
   getId() {
     return this.#id;

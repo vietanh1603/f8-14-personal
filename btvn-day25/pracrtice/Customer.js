@@ -14,6 +14,7 @@ export class Customer extends Base {
         return this.#email;
     }
 
+
     setEmail(email) {
         this.#email = email;
     }
