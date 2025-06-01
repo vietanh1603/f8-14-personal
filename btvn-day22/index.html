@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="search-bar">
+        <input placeholder="search employees" name="search" oninput="renderEmployees(this.value)"/>
+        <button onclick="onOpenDialog()">Add new</button>
+    </div>
+    <table>
+        <thead>
+        <tr></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+<div class="dialog-container" id="dialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="dialog-title">Add Employee</div>
+            <div class="dialog-input">
+                <input type="text" placeholder='name' name="name"/>
+                <input type="text" placeholder='address' name="address"/>
+                <input type="number" placeholder='age' name="age"/>
+                <select name="city">
+                    <option value=""> Chọn thành phố</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Đà Nẵng">Thanh Hóa</option>
+                    <option value="Đà Nẵng">Nghệ An</option>
+                    <option value="Đà Nẵng">Nam Định</option>
+                    <option value="Đà Nẵng">Vĩnh Phúc</option>
+                    <option value="Đà Nẵng">Bắc Giang </option>
+                    <option value="Đà Nẵng">Hà Nam</option>
+                    <option value="Đà Nẵng">Ninh Bình</option>
+                </select>
+
+            </div>
+            <div class="dialog-button">
+                <button class="cancel-btn" onclick="onCloseDialog()">Cancel</button>
+                <button class="save-btn" onclick="onSaveDialog()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="edit-dialog-container" id="editDialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="dialog-title">Edit Employee</div>
+            <div class="dialog-input">
+                <input type="hidden" name="id"/>
+                <input type="text" placeholder='name' name="name"/>
+                <input type="text" placeholder='address' name="address"/>
+                <input type="number" placeholder='age' name="age"/>
+                <select name="city">
+                    <option value=""> Chọn thành phố</option>
+                    <option value="Hà Nội">Hà Nội</option>
+                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    <option value="Đà Nẵng">Đà Nẵng</option>
+                    <option value="Đà Nẵng">Thanh Hóa</option>
+                    <option value="Đà Nẵng">Nghệ An</option>
+                    <option value="Đà Nẵng">Nam Định</option>
+                    <option value="Đà Nẵng">Vĩnh Phúc</option>
+                    <option value="Đà Nẵng">Bắc Giang </option>
+                    <option value="Đà Nẵng">Hà Nam</option>
+                    <option value="Đà Nẵng">Ninh Bình</option>
+                </select>
+            </div>
+            <div class="dialog-button">
+                <button class="cancel-btn" onclick="onCloseEditDialog()">Cancel</button>
+                <button class="edit-btn" onclick="onEditSave()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="del-dialog-container" id="delDialogContainer">
+    <div class="overlay">
+        <div class="dialog">
+            <div class="title">Delete employee</div>
+            <div class="title">Are you sure?</div>
+            <div>
+                <div class="dialog-button">
+                    <button class="cancel-btn" onclick="onCloseDeleteDialog()">Cancel</button>
+                    <button class="save-btn" onclick="onDeleteEmployee()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const headers = [
+        { name: 'id', text: 'ID', align: 'center' },
+        { name: 'name', text: 'Tên' },
+        { name: 'address', text: 'Địa chỉ' },
+        { name: 'city', text: 'Thành phố',align: 'center' },
+        { name: 'age', text: 'Tuổi', align: 'right' },
+        { name: 'action', text: 'Thao tác', align: 'center' },
+
+    ];
+
+    let employees = [
+        { id: 1, name: 'Trần Phạm Tín', address: 'Hoài Đức - Hà Nội', age: 27,city: 'Hà Nội' },
+        { id: 2, name: 'Phạm Nguyễn Bắc', address: 'Cổ Nhuế - Hà Nội', age: 27,city: 'Hà Nội' },
+        { id: 3, name: 'Nguyễn Nam Tào', address: 'Sóc Sơn - Hà Nội', age: 27,city: 'Hà Nội' },
+    ];
+
+    const dialogContainer = document.getElementById('dialogContainer');
+    const editDialogContainer = document.getElementById('editDialogContainer');
+    const delDialogContainer = document.getElementById('delDialogContainer');
+    const tableHead = document.querySelector('table thead tr');
+    const tableBody = document.querySelector('table tbody');
+    let selectedEmployeeId = null;
+
+    // Render header
+    headers.forEach(header => {
+        tableHead.innerHTML += `<th>${header.text}</th>`;
+    });
+
+    // Hàm render danh sách nhân viên
+    const renderEmployees= (keyword = '') => {
+        const lowerKeyword = keyword.toLowerCase();
+        tableBody.innerHTML = '';
+
+        // Tạo searchStr cho mỗi employee
+        employees.forEach(emp => {
+            emp.searchStr = `${emp.name}|${emp.address}|${emp.city}|${emp.age}`.toLowerCase();
+        });
+
+        // Lọc theo searchStr
+        const filtered = employees.filter(emp =>
+            emp.searchStr.includes(lowerKeyword)
+        );
+
+        filtered.forEach((employee, index) => {
+            const row = document.createElement('tr');
+            headers.forEach(header => {
+                const cell = document.createElement('td');
+                if (header.name === 'action') {
+                    const editBtn = document.createElement('span');
+                    const deleteBtn = document.createElement('span');
+
+                    editBtn.className = 'mdi mdi-pencil-outline';
+                    deleteBtn.className = 'mdi mdi-trash-can-outline';
+
+                    editBtn.addEventListener('click', () => {
+                        onOpenEditDialog(employee);
+                    });
+
+                    deleteBtn.addEventListener('click', () => {
+                        onOpenDeleteDialog(employee.id);
+                    });
+
+                    cell.appendChild(editBtn);
+                    cell.appendChild(deleteBtn);
+                } else {
+                    cell.innerText = employee[header.name];
+                }
+
+                if (header.align) {
+                    cell.classList.add(`text-align-${header.align}`);
+                }
+                row.appendChild(cell);
+            });
+            tableBody.appendChild(row);
+        });
+    }
+
+
+    // click vao add new de them moi
+    const onOpenDialog = () => {
+        dialogContainer.style.display = 'block';
+    }
+    // click vao cancel de dong dialog
+    const onCloseDialog = () => {
+        dialogContainer.style.display = 'none';
+    }
+    // click vao icon edit de hien edit-dialog
+    const onOpenEditDialog = (employee) => {
+        document.querySelector('#editDialogContainer input[name="id"]').value = employee.id;
+        document.querySelector('#editDialogContainer input[name="name"]').value = employee.name;
+        document.querySelector('#editDialogContainer input[name="address"]').value = employee.address;
+        document.querySelector('#editDialogContainer input[name="age"]').value = employee.age;
+        document.querySelector('#editDialogContainer select[name="city"]').value = employee.city;
+
+
+        editDialogContainer.style.display = 'block';
+    }
+    // click vao cancel de dong dialog
+    const onCloseEditDialog = () => {
+        editDialogContainer.style.display = 'none';
+    }
+    // click vao icon del de hien del-dialog
+    const onOpenDeleteDialog = (id) => {
+        selectedEmployeeId = id;
+        delDialogContainer.style.display = 'block';
+    }
+    // click vao cancel de dong dialog
+    const onCloseDeleteDialog = () => {
+        delDialogContainer.style.display = 'none';
+    }
+
+    // luu nhan vien moi
+    const onSaveDialog = () => {
+        const name = document.querySelector('#dialogContainer input[name="name"]').value.trim();
+        const address = document.querySelector('#dialogContainer input[name="address"]').value.trim();
+        const age = document.querySelector('#dialogContainer input[name="age"]').value.trim();
+        const city = document.querySelector('#dialogContainer select[name="city"]').value.trim();
+
+        // Kiểm tra nếu thiếu thông tin thì không thêm
+        if (!name || !address || !age || !city) {
+            alert("Vui lòng điền thông tin.");
+            return;
+        }
+        // tao id moi
+        const newId = employees.length ? employees[employees.length - 1].id + 1 : 1;
+
+        const employee = {
+            id: newId,
+            name: document.querySelector('#dialogContainer input[name="name"]').value,
+            address: document.querySelector('#dialogContainer input[name="address"]').value,
+            age: document.querySelector('#dialogContainer input[name="age"]').value,
+            city: document.querySelector('#dialogContainer select[name="city"]').value,
+        };
+        // them nhan vien moi vao danh sach
+        employees.push(employee);
+        onCloseDialog();
+        renderEmployees();
+    }
+    // chinh sua thong tin nhan vien
+    const onEditSave = () => {
+        const id = parseInt(document.querySelector('#editDialogContainer input[name="id"]').value);
+        const name = document.querySelector('#editDialogContainer input[name="name"]').value;
+        const address = document.querySelector('#editDialogContainer input[name="address"]').value;
+        const age = document.querySelector('#editDialogContainer input[name="age"]').value;
+        const city = document.querySelector('#editDialogContainer select[name="city"]').value;
+
+        // Kiểm tra nếu thiếu thông tin thì không thêm
+        if (!name || !address || !age || !city) {
+            alert("Vui lòng điền đầy đủ thông tin.");
+            return;
+        }
+
+        const newId = employees.length ? employees[employees.length - 1].id + 1 : 1;
+
+        const index = employees.findIndex(emp => emp.id === id);
+
+        if (index !== -1) {
+            employees[index] = {
+                id: id,
+                name: name,
+                address: address,
+                age: age,
+                city: city,
+            };
+
+            onCloseEditDialog();
+            renderEmployees();
+        }
+    }
+    // xoa nhan vien
+    const onDeleteEmployee = () => {
+        employees = employees.filter(emp => emp.id !== selectedEmployeeId);
+        onCloseDeleteDialog();
+        renderEmployees();
+    }
+
+    // Gọi lần đầu để hiển thị danh sách
+    renderEmployees();
+</script>
+</body>
+</html>
