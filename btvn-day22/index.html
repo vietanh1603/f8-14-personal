@@ -30,17 +30,7 @@
                 <input type="text" placeholder='address' name="address"/>
                 <input type="number" placeholder='age' name="age"/>
                 <select name="city">
-                    <option value=""> Chọn thành phố</option>
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Đà Nẵng">Đà Nẵng</option>
-                    <option value="Đà Nẵng">Thanh Hóa</option>
-                    <option value="Đà Nẵng">Nghệ An</option>
-                    <option value="Đà Nẵng">Nam Định</option>
-                    <option value="Đà Nẵng">Vĩnh Phúc</option>
-                    <option value="Đà Nẵng">Bắc Giang </option>
-                    <option value="Đà Nẵng">Hà Nam</option>
-                    <option value="Đà Nẵng">Ninh Bình</option>
+                    <option value="name"> Chọn thành phố</option>
                 </select>
 
             </div>
@@ -62,16 +52,6 @@
                 <input type="number" placeholder='age' name="age"/>
                 <select name="city">
                     <option value=""> Chọn thành phố</option>
-                    <option value="Hà Nội">Hà Nội</option>
-                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
-                    <option value="Đà Nẵng">Đà Nẵng</option>
-                    <option value="Đà Nẵng">Thanh Hóa</option>
-                    <option value="Đà Nẵng">Nghệ An</option>
-                    <option value="Đà Nẵng">Nam Định</option>
-                    <option value="Đà Nẵng">Vĩnh Phúc</option>
-                    <option value="Đà Nẵng">Bắc Giang </option>
-                    <option value="Đà Nẵng">Hà Nam</option>
-                    <option value="Đà Nẵng">Ninh Bình</option>
                 </select>
             </div>
             <div class="dialog-button">
@@ -111,7 +91,11 @@
         { id: 2, name: 'Phạm Nguyễn Bắc', address: 'Cổ Nhuế - Hà Nội', age: 27,city: 'Hà Nội' },
         { id: 3, name: 'Nguyễn Nam Tào', address: 'Sóc Sơn - Hà Nội', age: 27,city: 'Hà Nội' },
     ];
-
+    // theem thanh pho
+    const cities = [
+        "Hà Nội", "Đà Nẵng", "TP HCM", "Hải Phòng", "Huế",
+        "Cần Thơ", "Nha Trang", "Buôn Ma Thuột", "Vũng Tàu", "Đà Lạt"
+    ];
     const dialogContainer = document.getElementById('dialogContainer');
     const editDialogContainer = document.getElementById('editDialogContainer');
     const delDialogContainer = document.getElementById('delDialogContainer');
@@ -123,18 +107,31 @@
     headers.forEach(header => {
         tableHead.innerHTML += `<th>${header.text}</th>`;
     });
+    // render city
+    const citySelects = document.querySelectorAll("select");
 
-    // Hàm render danh sách nhân viên
+    citySelects.forEach(select => {
+        cities.forEach(city => {
+            const option = document.createElement("option");
+            option.value = city;
+            option.textContent = city;
+            select.appendChild(option);
+        });
+    });
+
+
+
+    // render danh sach nhan vien
     const renderEmployees= (keyword = '') => {
         const lowerKeyword = keyword.toLowerCase();
         tableBody.innerHTML = '';
 
-        // Tạo searchStr cho mỗi employee
+        // tao searchStr
         employees.forEach(emp => {
             emp.searchStr = `${emp.name}|${emp.address}|${emp.city}|${emp.age}`.toLowerCase();
         });
 
-        // Lọc theo searchStr
+        // loc theo searchStr
         const filtered = employees.filter(emp =>
             emp.searchStr.includes(lowerKeyword)
         );
@@ -214,7 +211,7 @@
         const age = document.querySelector('#dialogContainer input[name="age"]').value.trim();
         const city = document.querySelector('#dialogContainer select[name="city"]').value.trim();
 
-        // Kiểm tra nếu thiếu thông tin thì không thêm
+        // them neu thieu thong tin thi khong cho dien
         if (!name || !address || !age || !city) {
             alert("Vui lòng điền thông tin.");
             return;
@@ -242,16 +239,7 @@
         const age = document.querySelector('#editDialogContainer input[name="age"]').value;
         const city = document.querySelector('#editDialogContainer select[name="city"]').value;
 
-        // Kiểm tra nếu thiếu thông tin thì không thêm
-        if (!name || !address || !age || !city) {
-            alert("Vui lòng điền đầy đủ thông tin.");
-            return;
-        }
-
-        const newId = employees.length ? employees[employees.length - 1].id + 1 : 1;
-
         const index = employees.findIndex(emp => emp.id === id);
-
         if (index !== -1) {
             employees[index] = {
                 id: id,
