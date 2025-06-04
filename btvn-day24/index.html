@@ -6,61 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<style>
-    #app {
-        display: flex;
-        gap:50px ;
-    }
-    .question-container {
-        width: 70%;
-
-    }
-    .question-title {
-        border: 1px solid #ccc;
-        padding: 32px;
-    }
-    .question-option {
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
-    .check-btn {
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
-    .check-btn:active {
-        background-color: #9ec2bb;
-        user-select: none;
-    }
-    .time-container {
-        height: 50px;
-        width: 50px;
-        border: 1px solid #ccc;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 15px;
-        border-radius: 50%;
-    }
-    .bonus {
-        border: 1px solid #ccc;
-        display: flex;
-        flex-direction: column;
-        padding: 5px 15px;
-        border-radius: 5px;
-        line-height: 120%;
-    }
-    .bonus span {
-        padding: 0 5px;
-        margin-top: 5px;
-        font-size: 14px;
-        border-radius: 20px;
-    }
-</style>
-
 <body>
 <div id="app">
     <div class="question-container">
@@ -77,26 +24,50 @@
         <div class ="time-container">
             <div id="time">30</div>
         </div>
+        <div class="help">
+            <div class ="a5050">
+                <button>50/50</button>
+            </div>
+            <div class = "audiences">
+                <button>Hoi khan gia</button>
+            </div>
+            <div class ="call">
+                <button> Call</button>
+            </div>
+            <div class="expert">
+                <button>y kien chuyen gia</button>
+            </div>
+        </div>
     </div>
     <div class="bonus">
-        <span>$1.000.000</span>
-        <span>$500.000</span>
-        <span>$250.000</span>
-        <span>$125.000</span>
-        <span>$64.000</span>
-        <span>$32.000</span>
-        <span>$16.000</span>
-        <span>$8.000</span>
-        <span>$4.000</span>
-        <span>$2,000</span>
-        <span>$1.000</span>
-        <span>$500</span>
-        <span>$300</span>
-        <span>$200</span>
-        <span>$100</span>
+        <h3>Tiền thưởng</h3>
+        <div class="list-bonus"></div>
+    </div>
+</div>
+<!-- Game Over Modal -->
+<div id="gameOverModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2 id="modalMessage"></h2>
+        <p id="modalLevel"></p>
+        <p id="modalPrize" style="font-weight:bold; color:#e67e22; font-size:18px;"></p>
+        <button id="restart-game" class="modal-button">Chơi lại</button>
+    </div>
+</div>
+
+<!-- Audience Poll Modal -->
+<div id="audienceModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h3 style="margin-top:0; color:#2980b9;">Khán giả bình chọn</h3>
+        <div id="audienceResults" style="text-align:left; margin:10px 0;"></div>
+        <button id="close-audience" class="modal-button">Đóng</button>
     </div>
 </div>
 <script src="const.js" type="module"></script>
-<script src="referabces.js" type="module"></script>
+<script src="references.js" type="module"></script>
 <script src="render.js" type="module"></script>
+<script src="main.js" type="module"></script>
+<script src="logicGame.js" type="module"></script>
+<script src="gameStats.js" type="module"></script>
+</body>
+</html>
 </body>
