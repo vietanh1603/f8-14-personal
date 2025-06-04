@@ -1,6 +1,6 @@
-export const DOMReferences = {
+// references.js
+export const DOMRefs = {
     questionRef: document.querySelector('.question'),
-    questionTitle: document.querySelector('.question-title'),
     listBonus: document.querySelector('.list-bonus'),
     timeRef: document.getElementById('time'),
     checkBtn: document.querySelector('.check-btn'),
@@ -12,8 +12,9 @@ export const DOMReferences = {
     modalLevel: document.getElementById('modalLevel'),
     modalPrize: document.getElementById('modalPrize'),
     gameOverModal: document.getElementById('gameOverModal'),
+    restartGameBtn: document.getElementById('restart-game'),
     audienceResults: document.getElementById('audienceResults'),
     audienceModal: document.getElementById('audienceModal'),
-    restartGameBtn: document.getElementById('restart-game'),
-    closeAudienceBtn: document.getElementById('close-audience')
+    closeAudienceBtn: document.getElementById('close-audience'),
+    questionTitle: document.querySelector('.question-title')
 };

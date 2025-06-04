@@ -1,31 +1,99 @@
+// logicGame.js
+import { questions, prizeMap } from './const.js';
+import {
+    renderQuestion,
+    resetOptionsBackground,
+    renderPrizeLevels,
+    updateTimerDisplay,
+    showGameOverModal,
+    hideGameOverModal,
+    showAudienceModal,
+    hideAudienceModal,
+    disableLifelineButton,
+    resetLifelineButtonsUI,
+    updateLifelineButtonsState,
+    highlightOption
+} from './render.js';
+import { DOMRefs } from './references.js';
+
 export class GameLogic {
-    constructor(gameState, renderer) {
-        this.gameState = gameState;
-        this.renderer = renderer;
+    constructor() {
+        this.gameActive = true;
+        this.currentQuestionIndex = 0;
+        this.countdown = 30;
+        this.timerInterval = null;
+        this.currentLevel = 1;
+        this.usedQuestionIndices = [];
+        this.lifelines = {
+            '5050': true,
+            'audience': true,
+            'call': true,
+            'expert': true
+        };
+        this.currentQuestion = null;
+        this.selectedAnswer = null;
     }
 
     initGame() {
-        this.gameState.reset();
-        this.renderer.resetLifelineButtons();
+        this.currentQuestionIndex = 0;
+        this.currentLevel = 1;
+        this.countdown = 30;
+        this.gameActive = true;
+        this.usedQuestionIndices = []; // Xóa các câu hỏi đã sử dụng cho trò chơi mới
+        this.selectedAnswer = null;
+
+        // Đặt lại các quyền trợ giúp
+        this.lifelines = {
+            '5050': true,
+            'audience': true,
+            'call': true,
+            'expert': true
+        };
+
+        resetLifelineButtonsUI(); // Đặt lại giao diện các nút quyền trợ giúp
         this.showCurrentQuestion();
         this.startTimer();
-        this.addEventListeners();
+        this.addEventListeners(); // Thêm lại các trình nghe sự kiện sau khi đặt lại
     }
+    getRandomQuestionByLevel(level) {
+        let availableQuestionsForLevel = questions.filter((q, index) =>
+            q.level === level && !this.usedQuestionIndices.includes(index));
 
+        if (availableQuestionsForLevel.length === 0) {
+            // Nếu TẤT CẢ câu hỏi cho cấp độ NÀY đã được sử dụng, đặt lại chỉ các câu hỏi của cấp độ này từ danh sách đã sử dụng
+            const questionIdsForThisLevel = questions.filter(q => q.level === level).map(q => q.id);
+            this.usedQuestionIndices = this.usedQuestionIndices.filter(index =>
+                !questionIdsForThisLevel.includes(questions[index].id)
+            );
+            // Lọc lại các câu hỏi khả dụng sau khi đặt lại cho cấp độ hiện tại
+            availableQuestionsForLevel = questions.filter((q, index) =>
+                q.level === level && !this.usedQuestionIndices.includes(index));
+        }
+
+        const randomIndex = Math.floor(Math.random() * availableQuestionsForLevel.length);
+        const selectedQuestion = availableQuestionsForLevel[randomIndex];
+        const globalIndex = questions.findIndex(q => q.id === selectedQuestion.id);
+
+        this.usedQuestionIndices.push(globalIndex);
+        return { question: selectedQuestion, index: globalIndex };
+    }
     showCurrentQuestion() {
-        const { question: currentQuestion, index } = this.gameState.getRandomQuestionByLevel(this.gameState.currentLevel);
-        this.gameState.currentQuestionIndex = index;
+        const { question, index } = this.getRandomQuestionByLevel(this.currentLevel);
+        this.currentQuestion = question;
+        this.currentQuestionIndex = index;
+        this.selectedAnswer = null; // Đặt lại đáp án đã chọn cho câu hỏi mới
 
-        this.renderer.showQuestion(currentQuestion);
-        this.renderer.renderPrizeLevels(this.gameState.currentLevel, this.gameState.prizeMap);
-        this.checkLifelineAvailability();
+        renderQuestion(this.currentQuestion);
+        renderPrizeLevels(this.currentLevel);
+        resetOptionsBackground();
+        updateLifelineButtonsState(this.lifelines, this.currentLevel);
     }
 
     nextQuestion() {
-        this.gameState.currentLevel = Math.min(this.gameState.currentLevel + 1, 15);
+        this.currentLevel = Math.min(this.currentLevel + 1, 15);
 
-        if (this.gameState.currentLevel <= 15) {
-            this.gameState.countdown = 30;
+        if (this.currentLevel <= 15) {
+            this.countdown = 30;
             this.startTimer();
             this.showCurrentQuestion();
         } else {
@@ -34,69 +102,146 @@ export class GameLogic {
     }
 
     endGame(message) {
-        this.gameState.gameActive = false;
-        clearInterval(this.gameState.timerInterval);
+        this.gameActive = false;
+        clearInterval(this.timerInterval);
 
-        const prize = this.gameState.calculatePrize();
-        this.renderer.showGameOverModal(message, prize, this.gameState.currentLevel);
+        const prize = this.calculatePrize();
+        showGameOverModal(message, this.currentLevel, prize);
+    }
+
+    calculatePrize() {
+        // Các mức giải thưởng là các mốc quan trọng, không phải mỗi cấp độ
+        if (this.currentLevel >= 15) return prizeMap[15];
+        if (this.currentLevel >= 10) return prizeMap[10];
+        if (this.currentLevel >= 5) return prizeMap[5];
+        return 0; // Nếu thất bại trước cấp độ 5, họ nhận 0
+    }
+
+    startTimer() {
+        clearInterval(this.timerInterval);
+        updateTimerDisplay(this.countdown);
+
+        this.timerInterval = setInterval(() => {
+            this.countdown--;
+            updateTimerDisplay(this.countdown);
+
+            if (this.countdown <= 0) {
+                this.endGame("Hết thời gian! Game kết thúc!");
+            }
+        }, 1000);
+    }
+
+    handleOptionSelection(selectedOptionValue) {
+        if (!this.gameActive) return;
+
+        this.selectedAnswer = selectedOptionValue;
+        resetOptionsBackground();
+        highlightOption(selectedOptionValue, '#ffeaa7'); // Đánh dấu đáp án đã chọn
+    }
+
+    checkAnswer() {
+        if (!this.gameActive) return;
+
+        if (!this.selectedAnswer) {
+            alert("Vui lòng chọn một đáp án!");
+            return;
+        }
+
+        const isCorrect = (this.selectedAnswer === this.currentQuestion.correctAns);
+
+        if (isCorrect) {
+            highlightOption(this.selectedAnswer, '#2ecc71'); // Màu xanh lá cây cho đáp án đúng
+            setTimeout(() => this.nextQuestion(), 1000);
+        } else {
+            highlightOption(this.selectedAnswer, '#e74c3c'); // Màu đỏ cho đáp án sai
+
+            // Cũng đánh dấu đáp án đúng bằng màu xanh lá cây
+            highlightOption(this.currentQuestion.correctAns, '#2ecc71');
+
+            setTimeout(() => {
+                this.endGame("Đáp án sai! Game kết thúc!");
+            }, 1500);
+        }
     }
 
     use5050() {
-        if (!this.gameState.lifelines['5050'] || !this.gameState.gameActive) return;
+        // Thêm kiểm tra cấp độ để đảm bảo quyền trợ giúp chỉ được sử dụng từ cấp 5 trở lên
+        if (!this.lifelines['5050'] || !this.gameActive || this.currentLevel < 5) return;
 
-        const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
         const options = ['a', 'b', 'c', 'd'];
-        const wrongOptions = options.filter(opt => opt !== currentQuestion.correctAns);
+        const wrongOptions = options.filter(opt => opt !== this.currentQuestion.correctAns);
 
-        const keepWrongOption = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
+        // Chọn ngẫu nhiên hai đáp án sai để ẩn
+        let optionsToHide = [];
+        // Đảm bảo chúng ta không cố gắng ẩn nhiều lựa chọn hơn số lượng có sẵn hoặc dự định (2)
+        while (optionsToHide.length < 2 && wrongOptions.length > 0) {
+            const randomIndex = Math.floor(Math.random() * wrongOptions.length);
+            optionsToHide.push(wrongOptions.splice(randomIndex, 1)[0]);
+        }
 
-        let hiddenCount = 0;
-        options.forEach(opt => {
-            if (opt !== currentQuestion.correctAns && opt !== keepWrongOption && hiddenCount < 2) {
-                const optionElement = this.renderer.refs.questionRef.querySelector(`.question-option[value="${opt}"]`);
-                optionElement.style.visibility = 'hidden';
-                hiddenCount++;
+        optionsToHide.forEach(opt => {
+            const optionElement = DOMRefs.questionRef.querySelector(`.question-option[value="${opt}"]`);
+            if (optionElement) {
+                optionElement.style.visibility = 'hidden'; // Ẩn lựa chọn
             }
         });
 
-        this.gameState.lifelines['5050'] = false;
-        this.renderer.disableLifeline('5050');
+        this.lifelines['5050'] = false;
+        disableLifelineButton(DOMRefs.btn5050);
     }
 
     useAudience() {
-        if (!this.gameState.lifelines['audience'] || !this.gameState.gameActive) return;
+        // Thêm kiểm tra cấp độ
+        if (!this.lifelines['audience'] || !this.gameActive || this.currentLevel < 5) return;
 
-        const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
         const options = ['a', 'b', 'c', 'd'];
         let percentages = {};
+        let totalPercentageAssigned = 0;
 
-        percentages[currentQuestion.correctAns] = Math.floor(Math.random() * 30) + 40;
+        // Đáp án đúng nhận một phần đáng kể (40-70%)
+        const correctAnsPercentage = Math.floor(Math.random() * 31) + 40; // 40-70
+        percentages[this.currentQuestion.correctAns] = correctAnsPercentage;
+        totalPercentageAssigned += correctAnsPercentage;
 
-        let remaining = 100 - percentages[currentQuestion.correctAns];
-        const wrongOptions = options.filter(opt => opt !== currentQuestion.correctAns);
+        const wrongOptions = options.filter(opt => opt !== this.currentQuestion.correctAns);
+        let remainingPercentage = 100 - totalPercentageAssigned;
 
+        // Phân phối phần trăm còn lại giữa các đáp án sai
         wrongOptions.forEach((opt, index) => {
             if (index === wrongOptions.length - 1) {
-                percentages[opt] = remaining;
+                percentages[opt] = remainingPercentage; // Gán tất cả phần còn lại cho đáp án cuối cùng
             } else {
-                percentages[opt] = Math.floor(Math.random() * remaining * 0.7);
-                remaining -= percentages[opt];
+                const percentage = Math.floor(Math.random() * (remainingPercentage / (wrongOptions.length - index) * 1.5)); // Phân phối không đều
+                percentages[opt] = percentage;
+                remainingPercentage -= percentage;
             }
         });
 
-        this.renderer.showAudienceModal(percentages);
-        this.gameState.lifelines['audience'] = false;
-        this.renderer.disableLifeline('audience');
+        // Đảm bảo tổng số chính xác 100% (do Math.floor, có thể bị lệch một lượng nhỏ)
+        const currentTotal = Object.values(percentages).reduce((sum, val) => sum + val, 0);
+        if (currentTotal !== 100) {
+            percentages[this.currentQuestion.correctAns] += (100 - currentTotal); // Điều chỉnh phần trăm của đáp án đúng
+        }
+
+        showAudienceModal(percentages);
+        this.lifelines['audience'] = false;
+        disableLifelineButton(DOMRefs.btnAudience);
     }
-
     useCall() {
-        if (!this.gameState.lifelines['call'] || !this.gameState.gameActive) return;
+        // Thêm kiểm tra cấp độ
+        if (!this.lifelines['call'] || !this.gameActive || this.currentLevel < 5) return;
 
-        const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
         const options = ['a', 'b', 'c', 'd'];
+        let suggestedAnswer;
 
-        const suggestedAnswer = Math.random() < 0.7 ? currentQuestion.correctAns :
-            options.find(opt => opt !== currentQuestion.correctAns);
+        // 70% cơ hội đúng
+        if (Math.random() < 0.7) {
+            suggestedAnswer = this.currentQuestion.correctAns;
+        } else {
+            // Chọn một đáp án sai ngẫu nhiên
+            const wrongOptions = options.filter(opt => opt !== this.currentQuestion.correctAns);
+            suggestedAnswer = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
+        }
 
         const phrases = [
             `Tôi chắc chắn là ${suggestedAnswer.toUpperCase()}`,
@@ -106,18 +251,25 @@ export class GameLogic {
         ];
 
         alert(phrases[Math.floor(Math.random() * phrases.length)]);
-        this.gameState.lifelines['call'] = false;
-        this.renderer.disableLifeline('call');
+        this.lifelines['call'] = false;
+        disableLifelineButton(DOMRefs.btnCall);
     }
 
     useExpert() {
-        if (!this.gameState.lifelines['expert'] || !this.gameState.gameActive) return;
+        // Thêm kiểm tra cấp độ
+        if (!this.lifelines['expert'] || !this.gameActive || this.currentLevel < 5) return;
 
-        const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
         const options = ['a', 'b', 'c', 'd'];
+        let suggestedAnswer;
 
-        const suggestedAnswer = Math.random() < 0.5 ? currentQuestion.correctAns :
-            options.find(opt => opt !== currentQuestion.correctAns);
+        // 50% cơ hội đúng
+        if (Math.random() < 0.5) {
+            suggestedAnswer = this.currentQuestion.correctAns;
+        } else {
+            // Chọn một đáp án sai ngẫu nhiên
+            const wrongOptions = options.filter(opt => opt !== this.currentQuestion.correctAns);
+            suggestedAnswer = wrongOptions[Math.floor(Math.random() * wrongOptions.length)];
+        }
 
         const explanations = {
             a: "Theo nghiên cứu của chúng tôi, A là đáp án hợp lý nhất",
@@ -127,90 +279,47 @@ export class GameLogic {
         };
 
         alert(`Chuyên gia: "${explanations[suggestedAnswer]}"`);
-        this.gameState.lifelines['expert'] = false;
-        this.renderer.disableLifeline('expert');
-    }
-
-    startTimer() {
-        clearInterval(this.gameState.timerInterval);
-        this.renderer.updateTimerDisplay(this.gameState.countdown);
-
-        this.gameState.timerInterval = setInterval(() => {
-            this.gameState.countdown--;
-            this.renderer.updateTimerDisplay(this.gameState.countdown);
-
-            if (this.gameState.countdown <= 0) {
-                this.endGame("Hết thời gian! Game kết thúc!");
-            }
-        }, 1000);
-    }
-
-    checkLifelineAvailability() {
-        ['5050', 'audience', 'call', 'expert'].forEach(lifeline => {
-            const button = this.renderer.refs[`btn${lifeline.charAt(0).toUpperCase() + lifeline.slice(1)}`];
-            button.disabled = !this.gameState.lifelines[lifeline] || this.gameState.currentLevel < 5;
-        });
+        this.lifelines['expert'] = false;
+        disableLifelineButton(DOMRefs.btnExpert);
     }
 
     addEventListeners() {
-        // Chọn đáp án
+        // Trình nghe lựa chọn đáp án
         ['a', 'b', 'c', 'd'].forEach(key => {
-            const option = this.renderer.refs.questionRef.querySelector(`.question-option[value="${key}"]`);
-
-            option.addEventListener('click', () => {
-                if (!this.gameState.gameActive) return;
-
-                const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
-                currentQuestion.userAns = key;
-                currentQuestion.isCorrect = (key === currentQuestion.correctAns);
-
-                this.renderer.resetOptionsBackground();
-                option.style.backgroundColor = '#ffeaa7';
-            });
+            const option = DOMRefs.questionRef.querySelector(`.question-option[value="${key}"]`);
+            // Đảm bảo các trình nghe chỉ được thêm một lần
+            option.removeEventListener('click', this.handleOptionSelection.bind(this, key)); // Xóa trình nghe cũ
+            option.addEventListener('click', this.handleOptionSelection.bind(this, key));
         });
 
-        // Nút kiểm tra
-        this.renderer.refs.checkBtn.addEventListener('click', () => {
-            if (!this.gameState.gameActive) return;
+        // Trình nghe nút kiểm tra
+        DOMRefs.checkBtn.removeEventListener('click', this.checkAnswer.bind(this)); // Xóa trình nghe cũ
+        DOMRefs.checkBtn.addEventListener('click', this.checkAnswer.bind(this));
 
-            const currentQuestion = this.gameState.questions[this.gameState.currentQuestionIndex];
+        // Trình nghe modal
+        DOMRefs.restartGameBtn.removeEventListener('click', this.handleRestartGameClick); // Xóa trình nghe cũ
+        DOMRefs.restartGameBtn.addEventListener('click', this.handleRestartGameClick);
 
-            if (!currentQuestion.userAns) {
-                alert("Vui lòng chọn một đáp án!");
-                return;
-            }
+        DOMRefs.closeAudienceBtn.removeEventListener('click', hideAudienceModal); // Xóa trình nghe cũ
+        DOMRefs.closeAudienceBtn.addEventListener('click', hideAudienceModal);
 
-            const selectedOption = this.renderer.refs.questionRef.querySelector(`.question-option[value="${currentQuestion.userAns}"]`);
+        // Trình nghe nút quyền trợ giúp
+        DOMRefs.btn5050.removeEventListener('click', this.use5050.bind(this)); // Xóa trình nghe cũ
+        DOMRefs.btn5050.addEventListener('click', this.use5050.bind(this));
 
-            if (currentQuestion.isCorrect) {
-                selectedOption.style.backgroundColor = '#2ecc71';
-                setTimeout(() => this.nextQuestion(), 1000);
-            } else {
-                selectedOption.style.backgroundColor = '#e74c3c';
+        DOMRefs.btnAudience.removeEventListener('click', this.useAudience.bind(this)); // Xóa trình nghe cũ
+        DOMRefs.btnAudience.addEventListener('click', this.useAudience.bind(this));
 
-                const correctOption = this.renderer.refs.questionRef.querySelector(`.question-option[value="${currentQuestion.correctAns}"]`);
-                correctOption.style.backgroundColor = '#2ecc71';
+        DOMRefs.btnCall.removeEventListener('click', this.useCall.bind(this)); // Xóa trình nghe cũ
+        DOMRefs.btnCall.addEventListener('click', this.useCall.bind(this));
 
-                setTimeout(() => {
-                    this.endGame("Đáp án sai! Game kết thúc!");
-                }, 1500);
-            }
-        });
+        DOMRefs.btnExpert.removeEventListener('click', this.useExpert.bind(this)); // Xóa trình nghe cũ
+        DOMRefs.btnExpert.addEventListener('click', this.useExpert.bind(this));
+    }
 
-        // Các quyền trợ giúp
-        this.renderer.refs.btn5050.addEventListener('click', () => this.use5050());
-        this.renderer.refs.btnAudience.addEventListener('click', () => this.useAudience());
-        this.renderer.refs.btnCall.addEventListener('click', () => this.useCall());
-        this.renderer.refs.btnExpert.addEventListener('click', () => this.useExpert());
-
-        // Modal events
-        this.renderer.refs.restartGameBtn.addEventListener('click', () => {
-            this.renderer.refs.gameOverModal.style.display = 'none';
-            this.initGame();
-        });
-
-        this.renderer.refs.closeAudienceBtn.addEventListener('click', () => {
-            this.renderer.refs.audienceModal.style.display = 'none';
-        });
+    // Hàm xử lý riêng cho nút restart để có thể removeEventListener dễ dàng hơn
+    handleRestartGameClick = () => {
+        hideGameOverModal();
+        this.initGame();
     }
 }
