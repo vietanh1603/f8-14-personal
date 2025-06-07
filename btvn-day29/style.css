@@ -23,6 +23,7 @@
 }
 .product-card:hover {
     scale: 1.05;
+    cursor: pointer;
 }
 img {
     width: 60%;
