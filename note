@@ -1,5 +1,6 @@
 lenh cai json server
+tao db.json
 npm install json-server
 npx json-server db.json
-npm init
+    npm init
 npm create vite

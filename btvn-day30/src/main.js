@@ -1,4 +1,3 @@
-
 import {deleteMethod, getMethod, postMethod, putMethod} from "./api.js";
 
 // Elements
@@ -13,10 +12,9 @@ const renderTodos = (todos) => {
         return;
     }
 
-    const html = todos.map(todo => {
+    todoList.innerHTML = todos.map(todo => {
         return `
-            <div class="todo-item" data-id="${todo.id}"
->
+            <div class="todo-item" data-id="${todo.id}">
                 <input type="checkbox" ${todo.completed ? 'checked' : ''} />
                 <div class="todo-content ${todo.completed ? 'completed' : ''}">${todo.title}</div>
                 <button class="edit-btn fa-solid fa-pen-to-square"></button>
@@ -24,8 +22,6 @@ const renderTodos = (todos) => {
             </div>
         `;
     }).join('');
-
-    todoList.innerHTML = html;
 };
 
 // Add new todos
@@ -49,6 +45,28 @@ const handleSubmit = async (e) => {
     }
 };
 // put method
+todoList.addEventListener('change', async (e) => {
+    if (e.target.type === 'checkbox') {
+        const todoItem = e.target.closest('.todo-item');
+        const id = todoItem.dataset.id;
+        const completed = e.target.checked;
+        const title = todoItem.querySelector('.todo-content').textContent;
+
+        try {
+            await putMethod(id, { title, completed });
+            const contentEl = todoItem.querySelector('.todo-content');
+            if (completed) {
+                contentEl.classList.add('completed');
+            } else {
+                contentEl.classList.remove('completed');
+            }
+        } catch (error) {
+            console.log(error);
+            // Khôi phục trạng thái checkbox nếu có lỗi
+            e.target.checked = !completed;
+        }
+    }
+});
 
 todoList.addEventListener('click', async (e) => {
     if (e.target.classList.contains('edit-btn')) {
