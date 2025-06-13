@@ -4,3 +4,7 @@ npm install json-server
 npx json-server db.json
     npm init
 npm create vite
+
+tao du an react
+mkdir
+npm create vite
