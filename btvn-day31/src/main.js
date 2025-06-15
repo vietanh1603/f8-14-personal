@@ -1,15 +1,36 @@
+
+const loginBtnRef = document.querySelector('#loginBtn');
+
+const onMounted = () => {
+    const accessToken = localStorage.getItem('access');
+    // co access token thi vao trong home
+    if(accessToken) {
+        window.location.href = '../home.html'
+    }
+}
+
 const baseUrl = 'https://8fty49z8qb.execute-api.ap-southeast-1.amazonaws.com'
 
-
 // get method
-
 const getMethod = async (endpoint) => {
-    const reponse = await fetch (`${baseUrl}/${endpoint}`);
-    return await reponse.json();
+    const response = await fetch(`${baseUrl}/${endpoint}`, {
+method: 'GET',
+    headers: {
+    'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('access')}`
+}
+});
+const data = await response.json()
+
+if(data.detail === 'token expired') {
+    await getNewToken(() => getMethod(endpoint))
+}
+console.log(data)
+
+return data;
 }
 
 // post method
-
 const postMethod = async (endpoint, body) => {
     const response = await fetch(`${baseUrl}/${endpoint}`, {
         method: 'POST',
@@ -18,76 +39,47 @@ const postMethod = async (endpoint, body) => {
             'Content-Type': 'application/json'
         }
     })
-    return await response.json();
-}
-// xu li dang nhap
+    const data = await response.json()
 
-const handleLogin = async (email, password) => {
-    try {
-        const data = await postMethod('login', {email, password});
-        localStorage.setItem('access_token',data.access);
-        localStorage.setItem('refresh_token',data.refresh);
-        window.location.href = './home.html';
-    } catch (error) {
-        console.log(error);
+    if(data.detail === 'token expired') {
+        await getNewToken(() => postMethod(endpoint, body))
     }
-};
+    console.log(data)
 
-// lam moi token
-
-const getNewToken = async () => {
-    const refresh = localStorage.getItem('refresh')
-    if(!refresh) throw new Error('No refresh token');
-
-    const data = await postMethod('get_new_token', {refresh});
-    localStorage.setItem('access_token', data.access_token)
-    return data.access_token
+    return data;
 }
 
-// xu li token
-const getPosts = async () => {
-    const token = localStorage.getItem('access_token');
-    if(!token) throw new Error('Bạn cần login');
+// get new token
+const getNewToken = async (callback) => {
+    const data = await postMethod('get_new_token', {
+        refresh: localStorage.getItem('refresh')
+    })
+    console.log(data)
+    if(data.access) {
+        localStorage.setItem('access', data.access)
+        await callback()
+    }
+}
+
+// tao su kien cho button
+loginBtnRef.addEventListener('click', async () => {
+    const email = document.querySelector('.email').value;
+    const password = document.querySelector('.pass').value;
+
     try {
-        const response = await fetch(`${baseUrl}/posts`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+        const data = await postMethod('login', {
+            email: email,
+            password: password
         });
-        const data = await response.json();
-        return data.posts;
+
+        if (data.access) {
+            localStorage.setItem('access', data.access);
+            localStorage.setItem('refresh', data.refresh);
+            window.location.href = '../home.html';
+        }
     } catch (error) {
-        if (error.message === 'token expired') {
-            await getNewToken();
-            return getPosts(); // Thử lại sau khi refresh token
-        }
-        throw error;
+        console.log('Login error:', error);
     }
-}
-
-
-// xu li trang home
-const handleHome = async () => {
-    if (window.location.pathname.includes('home.html')) {
-        try {
-            const posts = await getPosts();
-            renderPosts(posts);
-        } catch (error) {
-            localStorage.clear();
-            window.location.href = './index.html';
-        }
-    }
-};
-
-// tao su kien login
-document.getElementById('loginBtn')?.addEventListener('click', async () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    await handleLogin(email, password);
 });
 
-window.addEventListener('DOMContentLoaded', handleHome);
-
-
-
-
+onMounted();
